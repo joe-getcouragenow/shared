@@ -45,3 +45,45 @@ this-all: this-print
 	cd ./tool && $(MAKE) this-build
 	# test
 	cd ./tool && $(MAKE) this-test
+
+
+# Repo
+LIB_MAIN_FSPATH=$(PWD)/./../main 
+LIB_MOD_FSPATH=$(PWD)/./../mod 
+LIB_SYS_FSPATH=$(PWD)/./../sys 
+
+# Folder
+BOILER_NAME=boilerplate
+DOC_NAME=doc
+
+
+## Copy boilerplate and docs to other repos
+this-copy:
+	#TODO: copy boilerplate over other repos.
+
+	# MAIN
+	@echo Doing: $(LIB_MAIN_FSPATH)
+	# boiler
+	rm -rf $(LIB_MAIN_FSPATH)/$(BOILER_NAME)
+	cp -Rvi ./boilerplate $(LIB_MAIN_FSPATH)/$(BOILER_NAME)
+	# doc
+	rm -rf $(LIB_MAIN_FSPATH)/$(DOC_NAME)
+	cp -Rvi ./boilerplate $(LIB_MAIN_FSPATH)/$(DOC_NAME)
+
+	# MOD
+	@echo Doing: $(LIB_MOD_FSPATH)
+	# boiler
+	rm -rf $(LIB_MOD_FSPATH)/$(BOILER_NAME)
+	cp -Rvi ./boilerplate $(LIB_MOD_FSPATH)/$(BOILER_NAME)
+	# doc
+	rm -rf $(LIB_MOD_FSPATH)/$(DOC_NAME)
+	cp -Rvi ./boilerplate $(LIB_MOD_FSPATH)/$(DOC_NAME)
+
+	# SYS
+	@echo Doing: $(LIB_SYS_FSPATH)
+	# boiler
+	rm -rf $(LIB_SYS_FSPATH)/$(BOILER_NAME)
+	cp -Rvi ./boilerplate $(LIB_SYS_FSPATH)/$(BOILER_NAME)
+	# doc
+	rm -rf $(LIB_SYS_FSPATH)/$(DOC_NAME)
+	cp -Rvi ./boilerplate $(LIB_SYS_FSPATH)/$(DOC_NAME)
