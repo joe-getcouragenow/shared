@@ -35,16 +35,13 @@ this-print: ## print
 	$(MAKE) flu-gen-lang-print
 
 	
-
+## Dep for CI
 this-dep:
-	# LOCAL DEVS: go to root make file and call this yourself to get all the tools !!!!
-	# install tools
+	# none
+
+## CI build
+this-all: this-print 
+	# build
 	cd ./tool && $(MAKE) this-build
-
-	# Install our grpc tools
-	#$(MAKE) grpc-all
-
-### CI
-
-## Build for CI. Does Big Gen !
-this-build: this-print this-dep
+	# test
+	cd ./tool && $(MAKE) this-test
