@@ -1,7 +1,7 @@
 //go:generate go run ../../../generator.go
 
 import (
-
+	// my sub modules
 )
 
 // const typedhello string = "Hello World"
