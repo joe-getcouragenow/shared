@@ -1,29 +1,23 @@
-name: ci-tool
+name: CI - shared
 
 on:
   push:
     branches:
       - "*"
-    paths:
-      - "tool/**"
   pull_request:
     branches:
       - "*"
-    paths:
-      - "tool/**"
-
 
 jobs:
   all:
-    name: CI - tool smoke
+    name: CI - shared
    
     strategy:
       fail-fast: false
       matrix:
-        # linux is enough
         os: [ubuntu-latest, windows-latest, macos-latest]
         go-version: [1.15.2]
-        target: ["this-ci-smoke",]
+        target: ["this-all",]
 
     runs-on: ${{ matrix.os }}
 
@@ -46,7 +40,7 @@ jobs:
           export GOPATH=${GITHUB_WORKSPACE}/go
           export PATH=$PATH:$GOPATH/bin
           make $target
-        working-directory: ${{ github.workspace }}/go/src/github.com/${{ github.repository }}/tool
+        working-directory: ${{ github.workspace }}/go/src/github.com/${{ github.repository }}
         env:
           target: ${{ matrix.target }}
 

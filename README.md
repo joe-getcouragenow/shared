@@ -1,3 +1,9 @@
 # shared
 
-shared tools an runtimes.
+shared tools and runtimes.
+
+# Build
+
+```
+make this-all
+```
