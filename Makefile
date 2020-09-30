@@ -43,38 +43,43 @@ this-dep:
 this-all: this-print 
 	# build
 	cd ./tool && $(MAKE) this-build
+	
 	# test
 	cd ./tool && $(MAKE) this-test
 
+### Sync
 
-
-# Repo
+# Repos
 LIB_MAIN_FSPATH=./../main
 LIB_MOD_FSPATH=$(PWD)/../mod
 LIB_SYS_FSPATH=$(PWD)/../sys
 
-# Folder
+# Folder uses in all repos.
 BOILER_NAME=boilerplate
 DOC_NAME=doc
 
 ## Force catchup from Upsteam for all repos.
 this-git-sync-all:
 
-	# TODO: Check is i can reuse in CI somehow.
+	# Shared is the MASTER of boilerplate, docs and in the Generation tools (using go_generate)
+	# this is  useful command for devs to quickly ensure they have all their repos up to date.
+	# we always work off git master branch.
 
+	# MAIN
 	@echo Doing $(LIB_MAIN_FSPATH)
 	cd $(LIB_MAIN_FSPATH) && $(MAKE) gitr-fork-catchup
 
+	# MOD
 	@echo Doing $(LIB_MOD_FSPATH)
 	cd $(LIB_MOD_FSPATH) && $(MAKE) gitr-fork-catchup
 
+	# SYS
 	@echo Doing $(LIB_SYS_FSPATH)
 	cd $(LIB_SYS_FSPATH) && $(MAKE) gitr-fork-catchup
 
 
-## Copy boilerplate and docs to other repos
-this-copy:
-	#TODO: copy boilerplate over other repos.
+## Copy boilerplate and docs to other repos.
+this-git-copy-all:
 
 	# MAIN
 	@echo Doing: $(LIB_MAIN_FSPATH)
@@ -83,9 +88,8 @@ this-copy:
 	cp -Rvi ./boilerplate $(LIB_MAIN_FSPATH)/$(BOILER_NAME)
 	# doc
 	rm -rf $(LIB_MAIN_FSPATH)/$(DOC_NAME)
-	cp -Rvi ./boilerplate $(LIB_MAIN_FSPATH)/$(DOC_NAME)
+	cp -Rvi ./doc $(LIB_MAIN_FSPATH)/$(DOC_NAME)
 
-tmp:
 	# MOD
 	@echo Doing: $(LIB_MOD_FSPATH)
 	# boiler
@@ -93,7 +97,7 @@ tmp:
 	cp -Rvi ./boilerplate $(LIB_MOD_FSPATH)/$(BOILER_NAME)
 	# doc
 	rm -rf $(LIB_MOD_FSPATH)/$(DOC_NAME)
-	cp -Rvi ./boilerplate $(LIB_MOD_FSPATH)/$(DOC_NAME)
+	cp -Rvi ./doc $(LIB_MOD_FSPATH)/$(DOC_NAME)
 
 	# SYS
 	@echo Doing: $(LIB_SYS_FSPATH)
@@ -102,4 +106,4 @@ tmp:
 	cp -Rvi ./boilerplate $(LIB_SYS_FSPATH)/$(BOILER_NAME)
 	# doc
 	rm -rf $(LIB_SYS_FSPATH)/$(DOC_NAME)
-	cp -Rvi ./boilerplate $(LIB_SYS_FSPATH)/$(DOC_NAME)
+	cp -Rvi ./doc $(LIB_SYS_FSPATH)/$(DOC_NAME)
