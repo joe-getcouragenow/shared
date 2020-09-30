@@ -17,7 +17,7 @@ https://1.1.1.1/help
 - For IPv4: 1.1.1.1 and 1.0.0.1. 
 - For IPv6: 2606:4700:4700::1111 and 2606:4700:4700::1001.
 
-2. Get FF
+2. Firefox
 
 Only Firefox has all 4 that you need:
 use these settings: https://www.inmotionhosting.com/support/website/security/dns-over-https-encrypted-sni-in-firefox/
@@ -27,6 +27,14 @@ Chrome:
 chrome://flags/#dns-over-https
 chrome://flags/#enable-webrtc-hide-local-ips-with-mdns
 chrome://flags/#dns-httpssvc
+
+4. IOS and MAC profiles to force DOH to work
+
+https://github.com/AdguardTeam/AdGuardHome/issues/2110
+
+here are the profiles already done.
+https://github.com/paulmillr/encrypted-dns
+
 
 ## Check the Server
 
