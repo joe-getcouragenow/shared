@@ -29,7 +29,7 @@ const (
 
 // listAsset will list all embedded assets in the directory recursively
 // naively however since it's a poc.
-// 4. Config Time & 5. Run Time
+// 4. Config Time
 func listAsset(dir string) ([]string, error) {
 	// this is ugly but it's just proof of concept
 	if strings.Contains(dir, "maintemplate") {
@@ -39,6 +39,22 @@ func listAsset(dir string) ([]string, error) {
 		return mod01Assets.AssetNames(), nil
 	} else {
 		return nil, errors.New(fmt.Sprintf(errListAsset, dir))
+	}
+}
+
+// loadAsset will unpack embedded asset and unpack it to given directory
+// parameter 1: assetDir is the name of the asset directory
+// parameter 2: target is the target directory to unpack
+// you can easily create a new handle func to test this.
+// 5. Run Time
+func loadAsset(assetDir, target string) error {
+	switch assetDir {
+	case "maintemplate":
+		return mainAssets.RestoreAssets(assetDir, target)
+	case "mod01":
+		return mod01Assets.RestoreAssets(assetDir, target)
+	default:
+		return errors.New(fmt.Sprintf("%s not found", assetDir))
 	}
 }
 
