@@ -35,7 +35,11 @@ this-print: ## print
 	$(MAKE) flu-gen-lang-print
 
 	
-## Dep for CI
+### BUILD
+
+# Called from CI.
+# Devs should run this before a git commit, so then they know that it will pass CI too.
+
 this-dep:
 	# none
 
@@ -47,7 +51,12 @@ this-all: this-print
 	# test
 	cd ./tool && $(MAKE) this-test
 
-### Sync
+
+
+### DEV
+
+
+## Sync
 
 # Repos
 LIB_MAIN_FSPATH=./../main
@@ -57,6 +66,11 @@ LIB_SYS_FSPATH=$(PWD)/../sys
 # Folder uses in all repos.
 BOILER_NAME=boilerplate
 DOC_NAME=doc
+
+
+this-git-sync-subrepos:
+
+	# Useful for a dev maybe later
 
 ## Force catchup from Upsteam for all repos.
 this-git-sync-all:
