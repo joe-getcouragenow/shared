@@ -5,7 +5,6 @@ go 1.15
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/golang/protobuf v1.4.2 // indirect
-	github.com/gorilla/mux v1.8.0
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/pseudomuto/protoc-gen-doc v1.3.2
 	github.com/pseudomuto/protokit v0.2.0
