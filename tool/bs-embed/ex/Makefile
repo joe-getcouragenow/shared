@@ -4,8 +4,17 @@ NAME=maintemplate
 MOD_LIST= maintemplate mod01
 EMBED_FLAGS = -pkg assets -nomemcopy -fs -prefix "assets"
 
+GOSEC_BIN_NAME=gosec
+GOSEC_VERSION=2.4.0
+
 print:
 	@echo hey
+
+dep:
+	@echo installing gosec
+	curl -sfL https://raw.githubusercontent.com/securego/gosec/master/install.sh | \
+ 		sh -s -- -b $GOPATH/bin v$(GOSEC_VERSION)
+	stat $(GOSEC_BIN_NAME)
 
 tidy:
 	cd mod01 && go mod tidy
@@ -37,7 +46,7 @@ security:
 	@echo "[OK] Go security check was completed!"
 
 
-all: generate security embed build
+all: dep generate security embed build
 	
 
 run:
