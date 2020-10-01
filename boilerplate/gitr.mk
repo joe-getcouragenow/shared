@@ -53,6 +53,9 @@ gitr-print:
 #See: https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork
 
 
+gitr-status:
+	git status
+
 gitr-upstream-open:
 	open https://$(GITR_SERVER)/$(GITR_ORG_UPSTREAM)/$(GITR_REPO_NAME).git 
 	

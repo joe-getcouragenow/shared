@@ -1,7 +1,4 @@
 
-# This make file uses composition to keep things KISS and easy.
-# In the boilerpalte make files dont do any includes, because you will create multi permutations of possibilities.
-
 BOILERPLATE_FSPATH=./boilerplate
 
 include $(BOILERPLATE_FSPATH)/help.mk
@@ -14,10 +11,6 @@ include $(BOILERPLATE_FSPATH)/go.mk
 
 # remove the "v" prefix
 VERSION ?= $(shell echo $(TAGGED_VERSION) | cut -c 2-)
-
-override FLU_SAMPLE_NAME =client
-override FLU_LIB_NAME =client
-
 
 ## Print all settings
 this-print: ## print
@@ -59,29 +52,33 @@ this-all: this-print
 ## Sync
 
 # Repos
-LIB_MAIN_FSPATH=./../main
+LIB_MAIN_FSPATH=$(PWD)/../main
 LIB_MOD_FSPATH=$(PWD)/../mod
 LIB_SYS_FSPATH=$(PWD)/../sys
 LIB_SYS_SHARE_FSPATH=$(PWD)/../sys-share
-
 #LIB_DEV_FSPATH=$(PWD)/../dev
 
-# Folder uses in all repos.
+
+REPO_LIST=main mod sys sys-share
+
+# Folders in each repo
 BOILER_NAME=boilerplate
 DOC_NAME=doc
 
-override GITR_COMMIT_MESSAGE = joe
+#override GITR_COMMIT_MESSAGE = joe
+override GITR_COMMIT_MESSAGE = $(MESSAGE)
+
 ## Forces commit in all repos
-this-git-commit-all:
+this-git-commit-all: this-copy-all
 
 	# Useful when working across many repos.
 	# Add the same Issue number
 
-	$(MAKE) gitr-fork-commit
+	@echo GITR_COMMIT_MESSAGE: $(GITR_COMMIT_MESSAGE)
 
-
-
-
+	for repo in $(REPO_LIST); do \
+		cd ./../$$repo && $(MAKE) gitr-status ; \
+  	done
 
 ## Force catchup from Upsteam for all repos.
 this-git-catchup-all:
@@ -104,38 +101,13 @@ this-git-catchup-all:
 
 
 ## Copy boilerplate and docs to other repos.
-this-git-copy-all:
+this-copy-all:
 
-	# Shared is the MASTER of boilerplate, docs and in the Generation tools (using go_generate)
-	# this is  useful command for devs to quickly ensure they have all their repos up to date.
-	# we always work off git master branch.
+	# Shared is the MASTER of boilerplate
+	# We Copy them to the othe repos.
+	for repo in $(REPO_LIST); do \
+		cd ./../$$repo && rm -rf $(BOILER_NAME) ; \
+		cp -Rvi ./boilerplate ./$$repo/$(BOILER_NAME) ; \
+  	done
 
-	# MAIN
-	@echo Doing: $(LIB_MAIN_FSPATH)
-	# boiler
-	rm -rf $(LIB_MAIN_FSPATH)/$(BOILER_NAME)
-	cp -Rvi ./boilerplate $(LIB_MAIN_FSPATH)/$(BOILER_NAME)
-	# doc
-	rm -rf $(LIB_MAIN_FSPATH)/$(DOC_NAME)
-	cp -Rvi ./doc $(LIB_MAIN_FSPATH)/$(DOC_NAME)
-
-	# MOD
-	@echo Doing: $(LIB_MOD_FSPATH)
-	# boiler
-	rm -rf $(LIB_MOD_FSPATH)/$(BOILER_NAME)
-	cp -Rvi ./boilerplate $(LIB_MOD_FSPATH)/$(BOILER_NAME)
-	# doc
-	rm -rf $(LIB_MOD_FSPATH)/$(DOC_NAME)
-	cp -Rvi ./doc $(LIB_MOD_FSPATH)/$(DOC_NAME)
-
-	# SYS
-	@echo Doing: $(LIB_SYS_FSPATH)
-	# boiler
-	rm -rf $(LIB_SYS_FSPATH)/$(BOILER_NAME)
-	cp -Rvi ./boilerplate $(LIB_SYS_FSPATH)/$(BOILER_NAME)
-	# doc
-	rm -rf $(LIB_SYS_FSPATH)/$(DOC_NAME)
-	cp -Rvi ./doc $(LIB_SYS_FSPATH)/$(DOC_NAME)
-
-	# DEV
-	# NO we dont want it.
+	
