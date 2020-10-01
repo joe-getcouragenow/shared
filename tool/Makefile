@@ -6,22 +6,11 @@ include $(BOILERPLATE_FSPATH)/gitr.mk
 include $(BOILERPLATE_FSPATH)/go.mk
 include $(BOILERPLATE_FSPATH)/tool.mk
 
+this-all: this-print this-build this-test
+
 ## Print all settings
 this-print:
-	$(MAKE) go-print
-
-	$(MAKE) tool-print
-
-# CI smoke test
-this-ci-smoke:
-
-	@echo -- TOOLS - CI SMOKE TEST: start --
-	
-	$(MAKE) this-build
-	$(MAKE) this-test
-	$(MAKE) this-build-clean
-
-	@echo -- TOOLS - CI SMOKE TEST: end --
+	@echo tools
 
 ## Build all tools
 this-build:
@@ -57,8 +46,6 @@ this-build:
 	# -- PLUS ALL OTHER TOOLS !!
 
 	@echo -- TOOLS - BUILD ALL: finish --
-
-
 
 ## Clean the build
 this-build-clean:
@@ -99,7 +86,7 @@ this-build-clean:
 this-test:
 	@echo -- TOOLS - TEST ALL: start --
 
-		@echo Dummy
+	@echo Dummy
 	cd ./$(TOOL_DUMMY_BIN_NAME) && $(MAKE) this-test
 
 	@echo Lang

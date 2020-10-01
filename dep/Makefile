@@ -48,6 +48,16 @@ LIB_GRPC_GATEWAY_REPO_VERSION=	v1.15.0
 # For now just using Brew. Will upgrade to use a golang downloader soon.
 LIB_PROTOC_VERSION=				3.13
 
+
+## All
+this-all:
+	#$(MAKE) grpc-all-delete
+	$(MAKE) grpc-all-git-delete
+	$(MAKE) grpc-all-git-clone
+	$(MAKE) grpc-all-build
+	$(MAKE) grpc-which
+
+	
 ## Print
 grpc-print:
 	@echo
@@ -85,13 +95,7 @@ grpc-print:
 
 	@echo
 
-## All
-grpc-all:
-	#$(MAKE) grpc-all-delete
-	$(MAKE) grpc-all-git-delete
-	$(MAKE) grpc-all-git-clone
-	$(MAKE) grpc-all-build
-	$(MAKE) grpc-which
+
 
 ## Which
 grpc-which:

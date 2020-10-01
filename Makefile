@@ -12,8 +12,23 @@ include $(BOILERPLATE_FSPATH)/go.mk
 # remove the "v" prefix
 VERSION ?= $(shell echo $(TAGGED_VERSION) | cut -c 2-)
 
+## Build in CI
+this-all: this-print this-dep this-build this-print-end
+
+	
+
+this-print:
+	@echo
+	@echo -- SHARED REPO : start --
+	@echo
+
+this-print-end:
+	@echo
+	@echo -- SHARED REPO ; end --
+	@echo
+
 ## Print all settings
-this-print: ## print
+this-print-all: ## print
 	
 	$(MAKE) os-print
 	
@@ -27,28 +42,18 @@ this-print: ## print
 
 	$(MAKE) flu-gen-lang-print
 
-	
-### BUILD
-
-# Called from CI.
-# Devs should run this before a git commit, so then they know that it will pass CI too.
 
 this-dep:
 	# none
+	cd ./dep && $(MAKE) this-all
 
-## Build in CI
-this-all: this-print 
+
+this-build:
 	# build
-	cd ./tool && $(MAKE) this-build
-	
-	# test
-	cd ./tool && $(MAKE) this-test
+	cd ./tool && $(MAKE) this-all
 
 	# SDK
-	cd ./tool/sdk && $(MAKE) this-all
-
-
-
+	cd ./sdk && $(MAKE) this-all
 
 
 ### Sync
