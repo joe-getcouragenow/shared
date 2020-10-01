@@ -15,8 +15,6 @@ VERSION ?= $(shell echo $(TAGGED_VERSION) | cut -c 2-)
 ## Build in CI
 this-all: this-print this-dep this-build this-print-end
 
-	
-
 this-print:
 	@echo
 	@echo -- SHARED REPO : start --
@@ -62,12 +60,14 @@ this-build:
 # This is for devs to have a singel make function 
 
 # Repos
-REPO_LIST=dev
-#REPO_LIST=main mod sys sys-share dev
+
+REPO_LIST=main mod sys sys-share dev
+
 
 # Folders in each repo
-BOILER_NAME=boilerplate
-DOC_NAME=doc
+CI_FOLDER_SOURCE_NAME=./ci-templates/workflows
+CI_FOLDER_TARGET_NAME=./.github
+
 
 #override GITR_COMMIT_MESSAGE = joe
 override GITR_COMMIT_MESSAGE = $(M)
@@ -78,14 +78,8 @@ this-git-all: this-copy-all this-git-commit-all this-git-catchup-all this-git-pu
 ## Copy boilerplate to other repos.
 this-copy-all:
 
-	# Shared is the MASTER of boilerplate
-	# We Copy them to the othe repos.
 	for repo in $(REPO_LIST); do \
-		cd ./../$$repo && rm -rf $(BOILER_NAME) ; \
-  	done
-
-	for repo in $(REPO_LIST); do \
-		cp -Rvi ./boilerplate ./../$$repo/$(BOILER_NAME) ; \
+		cp -Rvi $(CI_FOLDER_SOURCE_NAME) ./../$$repo/$(CI_FOLDER_TARGET_NAME) ; \
   	done
 	  
 ## Forces commit in all repos
