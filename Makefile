@@ -49,30 +49,40 @@ this-all: this-print
 
 
 
-### DEV
 
 
-## Sync
+### Sync
+
+# From the Shared repo, we copy the boilerplate out to the others repos
+# This is for devs to have a singel make function 
 
 # Repos
-LIB_MAIN_FSPATH=$(PWD)/../main
-LIB_MOD_FSPATH=$(PWD)/../mod
-LIB_SYS_FSPATH=$(PWD)/../sys
-LIB_SYS_SHARE_FSPATH=$(PWD)/../sys-share
-#LIB_DEV_FSPATH=$(PWD)/../dev
-
-
-REPO_LIST=main mod sys sys-share
+REPO_LIST=dev
+#REPO_LIST=main mod sys sys-share dev
 
 # Folders in each repo
 BOILER_NAME=boilerplate
 DOC_NAME=doc
 
 #override GITR_COMMIT_MESSAGE = joe
-override GITR_COMMIT_MESSAGE = $(MESSAGE)
+override GITR_COMMIT_MESSAGE = $(M)
 
 this-git-all: this-copy-all this-git-commit-all this-git-catchup-all this-git-push-all
 
+
+## Copy boilerplate to other repos.
+this-copy-all:
+
+	# Shared is the MASTER of boilerplate
+	# We Copy them to the othe repos.
+	for repo in $(REPO_LIST); do \
+		cd ./../$$repo && rm -rf $(BOILER_NAME) ; \
+  	done
+
+	for repo in $(REPO_LIST); do \
+		cp -Rvi ./boilerplate ./../$$repo/$(BOILER_NAME) ; \
+  	done
+	  
 ## Forces commit in all repos
 this-git-commit-all: 
 
@@ -96,17 +106,4 @@ this-git-push-all:
 
 	for repo in $(REPO_LIST); do \
 		cd ./../$$repo && $(MAKE) gitr-fork-push ; \
-  	done
-
-## Copy boilerplate to other repos.
-this-copy-all:
-
-	# Shared is the MASTER of boilerplate
-	# We Copy them to the othe repos.
-	for repo in $(REPO_LIST); do \
-		cd ./../$$repo && rm -rf $(BOILER_NAME) ; \
-  	done
-
-	for repo in $(REPO_LIST); do \
-		cp -Rvi ./boilerplate ./../$$repo/$(BOILER_NAME) ; \
   	done
