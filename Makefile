@@ -62,22 +62,29 @@ this-all: this-print
 LIB_MAIN_FSPATH=./../main
 LIB_MOD_FSPATH=$(PWD)/../mod
 LIB_SYS_FSPATH=$(PWD)/../sys
+LIB_SYS_SHARE_FSPATH=$(PWD)/../sys-share
+
+#LIB_DEV_FSPATH=$(PWD)/../dev
 
 # Folder uses in all repos.
 BOILER_NAME=boilerplate
 DOC_NAME=doc
 
+override GITR_COMMIT_MESSAGE = joe
+## Forces commit in all repos
+this-git-commit-all:
 
-this-git-sync-subrepos:
+	# Useful when working across many repos.
+	# Add the same Issue number
 
-	# Useful for a dev maybe later
+	$(MAKE) gitr-fork-commit
+
+
+
+
 
 ## Force catchup from Upsteam for all repos.
-this-git-sync-all:
-
-	# Shared is the MASTER of boilerplate, docs and in the Generation tools (using go_generate)
-	# this is  useful command for devs to quickly ensure they have all their repos up to date.
-	# we always work off git master branch.
+this-git-catchup-all:
 
 	# MAIN
 	@echo Doing $(LIB_MAIN_FSPATH)
@@ -91,9 +98,17 @@ this-git-sync-all:
 	@echo Doing $(LIB_SYS_FSPATH)
 	cd $(LIB_SYS_FSPATH) && $(MAKE) gitr-fork-catchup
 
+	# SYS-SHARED
+	@echo Doing $(LIB_SYS_SHARE_FSPATH)
+	cd $(LIB_SYS_SHARE_FSPATH) && $(MAKE) gitr-fork-catchup
+
 
 ## Copy boilerplate and docs to other repos.
 this-git-copy-all:
+
+	# Shared is the MASTER of boilerplate, docs and in the Generation tools (using go_generate)
+	# this is  useful command for devs to quickly ensure they have all their repos up to date.
+	# we always work off git master branch.
 
 	# MAIN
 	@echo Doing: $(LIB_MAIN_FSPATH)
@@ -121,3 +136,6 @@ this-git-copy-all:
 	# doc
 	rm -rf $(LIB_SYS_FSPATH)/$(DOC_NAME)
 	cp -Rvi ./doc $(LIB_SYS_FSPATH)/$(DOC_NAME)
+
+	# DEV
+	# NO we dont want it.
