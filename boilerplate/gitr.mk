@@ -84,6 +84,7 @@ gitr-fork-catchup:
 
 ## Commit the changes to the repo
 gitr-fork-commit:
+	@echo GITR_COMMIT_MESSAGE: $(GITR_COMMIT_MESSAGE)
 	git add --all
 	git commit -m '$(GITR_COMMIT_MESSAGE)'
 
