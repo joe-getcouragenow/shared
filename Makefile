@@ -5,9 +5,9 @@ include $(BOILERPLATE_FSPATH)/help.mk
 include $(BOILERPLATE_FSPATH)/os.mk
 include $(BOILERPLATE_FSPATH)/gitr.mk
 include $(BOILERPLATE_FSPATH)/tool.mk
+include $(BOILERPLATE_FSPATH)/grpc.mk
 include $(BOILERPLATE_FSPATH)/flu.mk
 include $(BOILERPLATE_FSPATH)/go.mk
-
 
 # remove the "v" prefix
 VERSION ?= $(shell echo $(TAGGED_VERSION) | cut -c 2-)
@@ -44,6 +44,9 @@ this-all: this-print
 	# test
 	cd ./tool && $(MAKE) this-test
 
+	# SDK
+	cd ./tool/sdk && $(MAKE) this-all
+
 
 
 ### DEV
@@ -68,8 +71,10 @@ DOC_NAME=doc
 #override GITR_COMMIT_MESSAGE = joe
 override GITR_COMMIT_MESSAGE = $(MESSAGE)
 
+this-git-all: this-copy-all this-git-commit-all this-git-catchup-all this-git-push-all
+
 ## Forces commit in all repos
-this-git-commit-all: this-copy-all
+this-git-commit-all: 
 
 	# Useful when working across many repos.
 	# Add the same Issue number
@@ -77,37 +82,31 @@ this-git-commit-all: this-copy-all
 	@echo GITR_COMMIT_MESSAGE: $(GITR_COMMIT_MESSAGE)
 
 	for repo in $(REPO_LIST); do \
-		cd ./../$$repo && $(MAKE) gitr-status ; \
+		cd ./../$$repo && $(MAKE) gitr-fork-commit ; \
   	done
 
 ## Force catchup from Upsteam for all repos.
 this-git-catchup-all:
 
-	# MAIN
-	@echo Doing $(LIB_MAIN_FSPATH)
-	cd $(LIB_MAIN_FSPATH) && $(MAKE) gitr-fork-catchup
+	for repo in $(REPO_LIST); do \
+		cd ./../$$repo && $(MAKE) gitr-fork-catchup ; \
+  	done
 
-	# MOD
-	@echo Doing $(LIB_MOD_FSPATH)
-	cd $(LIB_MOD_FSPATH) && $(MAKE) gitr-fork-catchup
+this-git-push-all:
 
-	# SYS
-	@echo Doing $(LIB_SYS_FSPATH)
-	cd $(LIB_SYS_FSPATH) && $(MAKE) gitr-fork-catchup
+	for repo in $(REPO_LIST); do \
+		cd ./../$$repo && $(MAKE) gitr-fork-push ; \
+  	done
 
-	# SYS-SHARED
-	@echo Doing $(LIB_SYS_SHARE_FSPATH)
-	cd $(LIB_SYS_SHARE_FSPATH) && $(MAKE) gitr-fork-catchup
-
-
-## Copy boilerplate and docs to other repos.
+## Copy boilerplate to other repos.
 this-copy-all:
 
 	# Shared is the MASTER of boilerplate
 	# We Copy them to the othe repos.
 	for repo in $(REPO_LIST); do \
 		cd ./../$$repo && rm -rf $(BOILER_NAME) ; \
-		cp -Rvi ./boilerplate ./$$repo/$(BOILER_NAME) ; \
   	done
 
-	
+	for repo in $(REPO_LIST); do \
+		cp -Rvi ./boilerplate ./../$$repo/$(BOILER_NAME) ; \
+  	done

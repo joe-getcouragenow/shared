@@ -48,12 +48,15 @@ gitr-print:
 	@echo
 
 
+
+
 ### GIT-FORK
 
 #See: https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork
 
 
 gitr-status:
+	# Test
 	git status
 
 gitr-upstream-open:
@@ -82,7 +85,7 @@ gitr-fork-catchup:
 ## Commit the changes to the repo
 gitr-fork-commit:
 	git add --all
-	git commit -m $(GITR_COMMIT_MESSAGE)
+	git commit -m '$(GITR_COMMIT_MESSAGE)'
 
 ## Push the repo to orgin
 gitr-fork-push:
@@ -90,6 +93,7 @@ gitr-fork-push:
 
 gitr-upstream-merge:
 	# Use github cli
+
 
 
 
