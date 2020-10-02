@@ -21,7 +21,7 @@ GITR_REPO_ABS_FSPATH=$(GOPATH)/src/$(GITR_SERVER)/$(GITR_ORG_FORK)/$(GITR_REPO_N
 # remove the "v" prefix
 GITR_VERSION ?= $(shell echo $(TAGGED_VERSION) | cut -c 2-)
 
-GITR_COMMIT_MESSAGE ?= quick
+GITR_COMMIT_MESSAGE ?= autocommit
 
 
 ## Prints the git setting
