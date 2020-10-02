@@ -286,10 +286,10 @@ grpc-go-build:
 	cd $(LIB_GOGRPC_REPO_FSPATH)/cmd/protoc-gen-go-grpc && go install .
 
 	# Golang GRPC Gatway
-	cd $(LIB_GRPC_GATEWAY_REPO_FSPATH)/protoc-gen-grpc-gateway && go install .
+	#cd $(LIB_GRPC_GATEWAY_REPO_FSPATH)/protoc-gen-grpc-gateway && go install .
 
 	# Golang Swagger
-	cd $(LIB_GRPC_GATEWAY_REPO_FSPATH)/protoc-gen-swagger && go install .
+	#cd $(LIB_GRPC_GATEWAY_REPO_FSPATH)/protoc-gen-swagger && go install .
 
 	# Dart GRPC and Protobuf
 	# NOT git cloned, but installed by Dart itself for Latest. If we hit probs then we can version it.
