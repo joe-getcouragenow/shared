@@ -20,22 +20,22 @@ However, you need to make sure you have all extra dependencies setup first, if y
 
 With Flutter and golang installed, you can install our tools
 
-
-
 ## Building
 
-See MainTemplate folder for Client and Server makefiles:
+See Main Repo and Deploy folder for Client and Server makefiles:
 
-https://github.com/getcouragenow/packages/tree/master/maintemplate
-
-
-In maintemplate, Run  ```make build-all```, and it will put all build tools into the go bin.
+Run  ```make this-all```, and it will put all build tools into the go bin.
 
 
 ## Running
 
-In maintemplate, Run  ```make run-all```, and it will run the code.
+Run  ```make run-all```, and it will run the code.
 
+## Container based
+
+This is not yet ready !
+
+Use Bazel and Telepresense to have all the code in docker and docker compose and k3d.
 
 ## Working on an issue
 
@@ -51,7 +51,7 @@ When you take an issue, please assign yourself to it and let everyone know on th
 
 When your PR is merged, check it builds correctly and then check the automated release works.
 
-CI: https://github.com/getcouragenow/packages/actions
+CI: https://github.com/getcouragenow/<repo>/actions
 
 
 ### Tracking the Channels
