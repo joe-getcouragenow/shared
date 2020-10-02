@@ -98,23 +98,16 @@ The scripts do all this for you.
 mkdir cd $(GOPATH)/github.com/me-getcouragenow
 
 # Clone a repo
-# works on public ones
-# git clone username@host.xz/absolute/path/to/repo.git/
-git clone git@github.com-joe-getcouragenow:joe-getcouragenow/dev
+git clone git@github.com-me-getcouragenow:me-getcouragenow/dev
 
-or
-# On hidden this works
-# git clone username@host.xz:relative/path/to/repo.git/
-git clone git@github.com-joe-getcouragenow:joe-getcouragenow/dev
+# Jump into the repo
+cd $(GOPATH)/github.com/me-getcouragenow/dev
 
-or
+# CHECK you in the repo
+pwd
+/Users/apple/workspace/go/src/github.com/me-getcouragenow/dev
 
-# git clone ssh://username@host.xz/absolute/path/to/repo.git/
-
-cd $(GOPATH)/github.com/me-getcouragenow/main
-
-
-# After ypu have forked a rep, map it to upstream
+# Config it to point to upstream properly
 make gitr-fork-setup
 
 # Catchup to the upstream
