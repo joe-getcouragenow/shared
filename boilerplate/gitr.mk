@@ -60,28 +60,57 @@ gitr-status:
 	# Test
 	git status
 
-gitr-upstream-open:
-	open https://$(GITR_SERVER)/$(GITR_ORG_UPSTREAM)/$(GITR_REPO_NAME).git 
-	
 
-## Opens the forked git server.
-gitr-fork-open:
-	open $(GITR_REPO_ABS_URL).git
+### FORK
 
+## Prints the exact Git Clone command you need :)
+# You can call this from your Org folder:
+# make -f shared/boilerplate/gitr.mk gitr-fork-clone-template
+gitr-fork-clone-template:
+	@echo
+	@echo
+	@echo Template is:
+	@echo EX "git clone git@github.com-ME-getcouragenow:ME-getcouragenow/REPO_NAME"
+	@echo
+	@echo So if your fork is: 
+	@echo github.com/james-getcouragenow/dev
+	@echo
+	@echo You use: 
+	@echo EX: "git clone git@github.com-james-getcouragenow:james-getcouragenow/dev"
+	@echo
+
+## Sets up the git fork locally.
+gitr-fork-setup-old:
+	# Pre: you git forked ( via web) and git cloned (via ssh)
+	# add upstream repo
+
+	#git remote add upstream git://$(GITR_SERVER)/$(GITR_ORG_UPSTREAM)/$(GITR_REPO_NAME).git
 
 ## Sets up the git fork locally.
 gitr-fork-setup:
 	# Pre: you git forked ( via web) and git cloned (via ssh)
-	# add upstream repo
-	git remote add upstream git://$(GITR_SERVER)/$(GITR_ORG_UPSTREAM)/$(GITR_REPO_NAME).git
+	# Sets up git config upstreak to point to the upstream origin
+	@echo
+	@echo EX git remote add upstream git@github.com-joe-getcouragenow:getcouragenow/dev
+	@echo
+	@echo EX git remote add upstream git@$(GITR_SERVER)-$(GITR_USER):$(GITR_ORG_UPSTREAM)/$(GITR_REPO_NAME)
+	@echo
+	# WORKS
+	git remote add upstream git@$(GITR_SERVER)-$(GITR_USER):$(GITR_ORG_UPSTREAM)/$(GITR_REPO_NAME)
+	@echo
 
 ## Sync upstream with your fork. Use this to make a PR.
 gitr-fork-catchup:
+	
 	# This fetches the branches and their respective commits from the upstream repository.
-	git fetch upstream 
+	@echo
+	git fetch upstream
+	@echo
 
 	# This brings your fork's master branch into sync with the upstream repository, without losing your local changes.
+	@echo
 	git merge upstream/master
+	@echo
 
 ## Commit the changes to the repo
 gitr-fork-commit:
@@ -92,6 +121,21 @@ gitr-fork-commit:
 ## Push the repo to orgin
 gitr-fork-push:
 	git push origin master
+
+## Opens the forked git server.
+gitr-fork-open:
+	open $(GITR_REPO_ABS_URL).git
+
+## Submits the PR you pushed
+gitr-fork-pr-submit:
+	## TODO. Alex gave me the commands.
+	open $(GITR_REPO_ABS_URL).git
+
+### UPSTREAM
+
+## Opens the upstream git web
+gitr-upstream-open:
+	open https://$(GITR_SERVER)/$(GITR_ORG_UPSTREAM)/$(GITR_REPO_NAME).git 
 
 gitr-upstream-merge:
 	# Use github cli
