@@ -5,6 +5,25 @@ The Architecture is designed to be an End to End secure system.
 
 See the [sys-core](https://github.com/getcouragenow/packages/tree/master/sys-core) for the code and domain model and the roles and permissions.
 
+## Benefits
+
+All the ESNI and other related security technologies remedies all the BS security and anonymising aspects.
+
+100% encrypted and anonymized
+
+Orgs run 100% of their systems fully secure by using the security tools.
+Orgs should run in Iceland.
+
+So chrome or any tool on their desktop or mobile will be automatically secure and anonymous. For their whole org !!
+
+Anyone in the public will see a warning when they connect telling them how to get secure.
+The tool we am developing means they  just download and run it and it’s all done for them. Idiot proof.
+Then they reconnect and it shows them they are fully secure and anonymous.
+
+No VPN needed.
+
+Any users leaking to any other internet entity can be detected, and we can show them and their OrgAdmin as a summary.
+
 ## Checks for User
 
 https://www.cloudflare.com/ssl/encrypted-sni/

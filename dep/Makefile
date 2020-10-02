@@ -33,8 +33,6 @@ endif
 ## All
 this-all: this-os-check
 
-	exit 1
-
 	#$(MAKE) grpc-all-delete
 	$(MAKE) grpc-all-git-delete
 	$(MAKE) grpc-all-git-clone
@@ -243,15 +241,35 @@ grpc-protoc-build:
 
 ifeq ($(GO_OS), windows)
 	@echo Windows detected
+
 else
-	@echo Other detected
-endif
+	
+ifeq ($(GO_OS), linux)
+	@echo Linux detected
 
-	# Protoc that is the basis
+else
+	@echo Darwin detected
 	brew install protobuf@$(LIB_PROTOC_VERSION)
-
+endif
+endif
+	
 grpc-protoc-delete:
+
+
+ifeq ($(GO_OS), windows)
+	@echo Windows detected
+
+else
+	
+ifeq ($(GO_OS), linux)
+	@echo Linux detected
+
+else
+	@echo Darwin detected
 	brew uninstall protobuf
+endif
+endif
+	
 
 
 ### GO Protobuf generators 
