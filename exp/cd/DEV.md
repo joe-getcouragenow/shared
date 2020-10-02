@@ -1,5 +1,12 @@
 # cd - continuous deployment
 
+I think i have this worked out well.
+
+All the bits below will work. 
+
+
+---
+
 We need CD working
 The deployed binary shoudl then self update.
 - when this happens can be automatic or saved as needed in the DB when detcetd and shown in the Sys GUI.

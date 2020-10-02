@@ -7,10 +7,34 @@ include $(BOILERPLATE_FSPATH)/grpc.mk
 
 # grpc tools
 
+this-os-check:
 
+# Just a checker i can run when needed.
+
+	@echo
+	@echo -- GRPC-OS check : start --
+	@echo
+
+ifeq ($(GO_OS), windows)
+	@echo Windows detected
+else
+	
+ifeq ($(GO_OS), linux)
+	@echo Linux detected
+else
+	@echo Darwin detected
+endif
+endif
+
+	@echo
+	@echo -- GRPC-OS check : end --
+	@echo
 
 ## All
-this-all:
+this-all: this-os-check
+
+	exit 1
+
 	#$(MAKE) grpc-all-delete
 	$(MAKE) grpc-all-git-delete
 	$(MAKE) grpc-all-git-clone
@@ -211,8 +235,17 @@ grpc-grpcui-delete:
 # Download and put into GOPATH also
 
 grpc-protoc-build:
+
+	# http://google.github.io/proto-lens/installing-protoc.html
 	@echo
 	@echo -- protoc --
+
+
+ifeq ($(GO_OS), windows)
+	@echo Windows detected
+else
+	@echo Other detected
+endif
 
 	# Protoc that is the basis
 	brew install protobuf@$(LIB_PROTOC_VERSION)
