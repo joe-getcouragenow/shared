@@ -6,19 +6,16 @@ This contains the Functional modules and runner.
 
 Project Web site: https://getcouragenow.org/
 
-Project Docs: https://docs.google.com/document/d/1caq1gSvHqVXVCOCGPsqi7I0fbF-Gdyryd07CL9yJ55o
-
-
-
 ## Developer setup and help
 
-The project uses [Flutter](https://flutter.dev/), [Golang](https://golang.org/) and [Kubernetes](https://kubernetes.io/)
+The project uses [Flutter](https://flutter.dev/), [Golang](https://golang.org/) and [k3d](https://github.com/rancher/k3d)
 
-However, you need to make sure you have all extra dependencies setup first, if you want to extend the system. See the boilerplate OS folder where scripts are there to do this for you.
+However, you need to make sure you have all extra dependencies setup first, if you want to extend the system. 
+See the boilerplate OS folder where scripts are there to do this for you.
 
 ## Tools
 
-With Flutter and golang installed, you can install our tools
+With Flutter and golang installed, you can install our tools.
 
 ## Building
 
@@ -44,6 +41,74 @@ The [Kan Ban](https://github.com/orgs/getcouragenow/projects/1) should be looked
 Is you want to work on an issue, please first ensure that you understand the issue and the suggested approach. Ask the Team on Telegram if your not sure about something or the best way to approach the implementation.
 
 When you take an issue, please assign yourself to it and let everyone know on the Telegram group, so we everyone knows your taking it.
+
+
+
+## SSH Setup
+
+```
+cd $HOME/.ssh
+
+# Delete the shit in your global git config. Your leaking ..
+# git config --list
+# same but shows where the values come from.
+# git config -l
+
+# Make a new key
+# ssh-keygen -t rsa -b 4096 -C "me-getcouragenow@github.com"
+
+# Add ssh key
+# ssh-add ~/.ssh/me-getcouragenow@github.com
+
+# Delete ssh key  (if you screw it up)
+# ssh-add -d ~/.ssh/me-getcouragenow@github.com
+
+# List added ssh
+# ssh-add -l
+
+# Add the public key to github on the web site
+# https://github.com/settings/keys
+
+```
+
+ssh config:
+
+add this to $HOME/.ssh/config
+
+```
+## me-getcouragenow
+# https://github.com/me-getcouragenow/dev
+# e.g: git clone git@github.com-me-getcouragenow:me-getcouragenow/main
+Host github.com-me-getcouragenow
+ HostName github.com
+ User git
+ UseKeychain yes
+ AddKeysToAgent yes
+ IdentityFile ~/.ssh/me-getcouragenow@github.com
+```
+
+## Git
+
+Now you setup your filesystem and make any changes and PR it back.
+
+The scripts do all this for you.
+
+```
+# setup folder
+mkdir cd $(GOPATH)/github.com/me-getcouragenow
+cd $(GOPATH)/github.com/me-getcouragenow/main
+
+
+# After ypu have forked a rep, map it to upstream
+make gitr-fork-setup
+
+# Catchup to the upstream
+make gitr-fork-catchup
+
+# Make a PR
+make M='<#ISSUENUMBERO> comment ...' gitr-fork-all
+
+```
 
 ---
 
