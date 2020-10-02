@@ -1,5 +1,5 @@
-
 # https://github.com/AdguardTeam/AdGuardHome
+
 
 LIB=github.com/AdguardTeam/AdGuardHome
 LIB_FSPATH=$(GOPATH)/src/$(LIB)
@@ -28,21 +28,3 @@ this-vscode-add:
 
 this-build:
 	cd $(LIB_FSPATH) && $(MAKE)
-
-### FLU
-
-
-
-## this-flu-web-run
-this-flu-web-run:
-	$(MAKE) flu-web-run 
-
-## this-flu-desk-init
-this-flu-desk-init:
-	$(MAKE) flu-desk-init 
-	cd $(LIB_FSPATH) && hover plugins get
-
-
-## this-flu-desk-run
-this-flu-desk-run:
-	$(MAKE) flu-desk-run 
