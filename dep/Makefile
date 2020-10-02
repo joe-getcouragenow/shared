@@ -78,7 +78,7 @@ grpc-all-git-clone:
 	# Envoy
 	# See: https://github.com/pomerium/pomerium/blob/master/Makefile
 	# this installs the getter into the GOBIN
-	GO111MODULE=on go get $(LIB_ENVOY)/cmd/getenvoy@${LIB_ENVOY_GETENVOY_VERSION}
+	#GO111MODULE=on go get $(LIB_ENVOY)/cmd/getenvoy@${LIB_ENVOY_GETENVOY_VERSION}
 
 	# GRPCUI
 	git clone https://$(LIB_GRPCUI_REPO) $(LIB_GRPCUI_REPO_FSPATH)
@@ -95,32 +95,42 @@ grpc-all-git-clone:
 	# git clone https://$(LIB_GOOLD_REPO_REPO) $(LIB_GOOLD_REPO_REPO_FSPATH)
 
 	# GRPC Gateway compiler
-	git clone https://$(LIB_GRPC_GATEWAY_REPO) $(LIB_GRPC_GATEWAY_REPO_FSPATH)
-	cd $(LIB_GRPC_GATEWAY_REPO_FSPATH) && git checkout $(LIB_GRPC_GATEWAY_REPO_VERSION)
+	#git clone https://$(LIB_GRPC_GATEWAY_REPO) $(LIB_GRPC_GATEWAY_REPO_FSPATH)
+	#cd $(LIB_GRPC_GATEWAY_REPO_FSPATH) && git checkout $(LIB_GRPC_GATEWAY_REPO_VERSION)
 	
 
 ## All-git-delete
 grpc-all-git-delete:
-	rm -rf $(LIB_ENVOY_REPO_FSPATH)
+	#rm -rf $(LIB_ENVOY_REPO_FSPATH)
 	rm -rf $(LIB_GRPCUI_REPO_FSPATH)
 	rm -rf $(LIB_GOGRPC_REPO_FSPATH)
 	rm -rf $(LIB_GO_REPO_FSPATH)
-	rm -rf $(LIB_GOOLD_REPO_REPO_FSPATH)
-	rm -rf $(LIB_GRPC_GATEWAY_REPO_FSPATH)
+	#rm -rf $(LIB_GOOLD_REPO_REPO_FSPATH)
+	#rm -rf $(LIB_GRPC_GATEWAY_REPO_FSPATH)
 
 grpc-all-vscode-add:
-	code --add $(LIB_ENVOY_REPO_FSPATH) --reuse-window
+	#code --add $(LIB_ENVOY_REPO_FSPATH) --reuse-window
 	code --add $(LIB_GRPCUI_REPO_FSPATH) --reuse-window
 	code --add $(LIB_GOGRPC_REPO_FSPATH) --reuse-window
 	code --add $(LIB_GO_REPO_FSPATH) --reuse-window
-	code --add $(LIB_GOOLD_REPO_REPO_FSPATH) --reuse-window
-	code --add $(LIB_GRPC_GATEWAY_REPO_FSPATH) --reuse-window
+	#code --add $(LIB_GOOLD_REPO_REPO_FSPATH) --reuse-window
+	#code --add $(LIB_GRPC_GATEWAY_REPO_FSPATH) --reuse-window
 
 ## All-build
-grpc-all-build: grpc-envoy-build grpc-go-build grpc-grpcui-build grpc-grpcli-build grpc-protoc-build
+grpc-all-build: 
+	#$(MAKE) grpc-envoy-build 
+	$(MAKE) grpc-go-build 
+	#$(MAKE) grpc-grpcui-build 
+	#$(MAKE) grpc-grpcli-build 
+	$(MAKE) grpc-protoc-build
 
 ## All-delete
-grpc-all-delete: grpc-envoy-delete grpc-go-delete grpc-grpcui-delete grpc-grpcli-delete grpc-protoc-delete
+grpc-all-delete: 
+	#$(MAKE) grpc-envoy-delete 
+	$(MAKE) grpc-go-delete 
+	#$(MAKE) grpc-grpcui-delete 
+	#$(MAKE) grpc-grpcli-delete 
+	$(MAKE) grpc-protoc-delete
 
 
 ### ENVOY
