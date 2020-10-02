@@ -54,6 +54,7 @@ gitr-print:
 
 #See: https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork
 
+gitr-fork-all: gitr-status gitr-fork-catchup gitr-status gitr-fork-commit gitr-fork-push gitr-fork-open
 
 gitr-status:
 	# Test
