@@ -35,6 +35,8 @@ https://github.com/AdguardTeam/AdGuardHome/issues/2110
 here are the profiles already done.
 https://github.com/paulmillr/encrypted-dns
 
+5. Install clouldflared
+
 
 ## Check the Server
 
