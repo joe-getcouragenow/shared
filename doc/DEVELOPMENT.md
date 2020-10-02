@@ -94,8 +94,23 @@ Now you setup your filesystem and make any changes and PR it back.
 The scripts do all this for you.
 
 ```
-# setup folder
+# setup Org folder
 mkdir cd $(GOPATH)/github.com/me-getcouragenow
+
+# Clone a repo
+# works on public ones
+# git clone username@host.xz/absolute/path/to/repo.git/
+git clone git@github.com-joe-getcouragenow:joe-getcouragenow/dev
+
+or
+# On hidden this works
+# git clone username@host.xz:relative/path/to/repo.git/
+git clone git@github.com-joe-getcouragenow:joe-getcouragenow/dev
+
+or
+
+# git clone ssh://username@host.xz/absolute/path/to/repo.git/
+
 cd $(GOPATH)/github.com/me-getcouragenow/main
 
 
