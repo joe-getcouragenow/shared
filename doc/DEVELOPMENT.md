@@ -1,32 +1,54 @@
 # Development
 
-## Project docs
 
-This contains the Functional modules and runner.
+## Working on an issue
 
-Project Web site: https://getcouragenow.org/
+Developers use the [Kan Ban](https://github.com/orgs/getcouragenow/projects/1) to work out what to work on. Admins only: [Kan Ban](https://github.com/orgs/getcouragenow/projects/1/settings/linked_repositories)
 
-## Developer setup and help
+If you want to work on an issue, please first ensure that you understand the issue and the suggested approach. Ask the Team on Telegram if your not sure about something or the best way to approach the implementation.
+
+When you take an issue, please assign yourself to it, so everyone knows your taking it.
+
+## Set up your Environment
 
 The project uses [Flutter](https://flutter.dev/), [Golang](https://golang.org/) and [k3d](https://github.com/rancher/k3d)
 
-However, you need to make sure you have all extra dependencies setup first, if you want to extend the system. 
-See the boilerplate OS folder where scripts are there to do this for you.
+In the **shared** repository...
 
-## Tools
+Lets install Flutter and Golang:
 
-With Flutter and golang installed, you can install our tools.
+```bash
+#!/bin/bash
+cd bootstrap && make this-all
+```
+
+Lets install our tools:
+
+```bash
+#!/bin/bash
+cd tool && make this-all
+```
 
 ## Building
 
-See Main Repo and Deploy folder for Client and Server makefiles:
+Now that you have all the tools setup, you can work on the real code repositories.
 
-Run  ```make this-all```, and it will put all build tools into the go bin.
+In the any repository, you can build using:
 
+```bash
+#!/bin/bash
 
-## Running
+# Build the code
+make this-all
 
-Run  ```make run-all```, and it will run the code.
+# Run the code
+make this-run
+
+# Test the code
+make this-test
+
+```
+
 
 ## Container based
 
@@ -34,19 +56,16 @@ This is not yet ready !
 
 Use Bazel and Telepresense to have all the code in docker and docker compose and k3d.
 
-## Working on an issue
-
-The [Kan Ban](https://github.com/orgs/getcouragenow/projects/1) should be looked at to work out what to work on.
-
-Is you want to work on an issue, please first ensure that you understand the issue and the suggested approach. Ask the Team on Telegram if your not sure about something or the best way to approach the implementation.
-
-When you take an issue, please assign yourself to it and let everyone know on the Telegram group, so we everyone knows your taking it.
-
-
-
 ## SSH Setup
 
-```
+Note: In the example below:
+
+- the Repo is called ```<REPO>```
+- the Forking user is ```<FORKINGUSER>```
+
+```bash
+#!/bin/bash
+
 cd $HOME/.ssh
 
 # Delete the shit in your global git config. Your leaking ..
@@ -55,13 +74,13 @@ cd $HOME/.ssh
 # git config -l
 
 # Make a new key
-# ssh-keygen -t rsa -b 4096 -C "me-getcouragenow@github.com"
+# ssh-keygen -t rsa -b 4096 -C "<FORKINGUSER>@github.com"
 
 # Add ssh key
-# ssh-add ~/.ssh/me-getcouragenow@github.com
+# ssh-add ~/.ssh/<FORKINGUSER>@github.com
 
 # Delete ssh key  (if you screw it up)
-# ssh-add -d ~/.ssh/me-getcouragenow@github.com
+# ssh-add -d ~/.ssh/<FORKINGUSER>@github.com
 
 # List added ssh
 # ssh-add -l
@@ -69,22 +88,25 @@ cd $HOME/.ssh
 # Add the public key to github on the web site
 # https://github.com/settings/keys
 
-```
+```bash
+#!/bin/bash
 
 ssh config:
 
 add this to $HOME/.ssh/config
 
-```
-## me-getcouragenow
-# https://github.com/me-getcouragenow/dev
-# e.g: git clone git@github.com-me-getcouragenow:me-getcouragenow/main
-Host github.com-me-getcouragenow
+```bash
+#!/bin/bash
+
+## <FORKINGUSER>
+# https://github.com/<FORKINGUSER>/<REPO>
+# e.g: git clone git@github.com-<FORKINGUSER>:<FORKINGUSER>/<REPO>
+Host github.com-<FORKINGUSER>
  HostName github.com
  User git
  UseKeychain yes
  AddKeysToAgent yes
- IdentityFile ~/.ssh/me-getcouragenow@github.com
+ IdentityFile ~/.ssh/<FORKINGUSER>@github.com
 ```
 
 ## Git
@@ -93,41 +115,77 @@ Now you setup your filesystem and make any changes and PR it back.
 
 The scripts do all this for you.
 
-```
+```bash
+#!/bin/bash
+
 # setup Org folder
-mkdir cd $(GOPATH)/github.com/me-getcouragenow
+mkdir cd $(GOPATH)/github.com/<FORKINGUSER>
 
 # Clone a repo
-git clone git@github.com-me-getcouragenow:me-getcouragenow/dev
+git clone git@github.com-<FORKINGUSER>:<FORKINGUSER>/<REPO>
 
 # Jump into the repo
-cd $(GOPATH)/github.com/me-getcouragenow/dev
+cd $(GOPATH)/github.com/<FORKINGUSER>/<REPO>
 
-# CHECK you in the repo
+# CHECK your in the repo
 pwd
-/Users/apple/workspace/go/src/github.com/me-getcouragenow/dev
+/Users/apple/workspace/go/src/github.com/<FORKINGUSER>/<REPO>
 
 # Config it to point to upstream properly
 make gitr-fork-setup
 
-# Catchup to the upstream
-make gitr-fork-catchup
+```
 
-# Make a PR
-make M='<#ISSUENUMBERO> comment ...' gitr-fork-all
+Your .git/config should now be like this:
+
+```bash
+
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[remote "origin"]
+	url = git@github.com-<FORKINGUSER>:<FORKINGUSER>/<REPO>
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[remote "upstream"]
+	url = git@github.com-<FORKINGUSER>:getcouragenow/<REPO>
+	fetch = +refs/heads/*:refs/remotes/upstream/*
 
 ```
 
----
+## Git workflow
+
+Now your setup, you just follow this workflow.
+
+```bash
+#!/bin/bash
+
+# Check your workspace.
+make gitr-status
+
+# Pull the upstream code changes into your workspace.
+make gitr-fork-catchup
+
+# Make a PR from your workspace upstream via your github fork.
+make M='<#ISSUENUMBERO> comment ...' gitr-fork-all
+
+```
 
 ## CI and CD
 
 When your PR is merged, check it builds correctly and then check the automated release works.
 
-CI: https://github.com/getcouragenow/<repo>/actions
+CI: https://github.com/getcouragenow/<REPO>/actions
 
+## Tracking the Channels
 
-### Tracking the Channels
+**STATUS: Not done yet*
 
 - Git TAGS are used to version the backend and frontend together.
 
