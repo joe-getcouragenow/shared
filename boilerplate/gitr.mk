@@ -24,6 +24,10 @@ GITR_VERSION ?= $(shell echo $(TAGGED_VERSION) | cut -c 2-)
 GITR_COMMIT_MESSAGE ?= autocommit
 
 
+#GITR_BRANCH_NAME=main # Later for gitea
+GITR_BRANCH_NAME=master
+
+
 ## Prints the git setting
 gitr-print:
 	@echo
@@ -109,7 +113,7 @@ gitr-fork-catchup:
 
 	# This brings your fork's master branch into sync with the upstream repository, without losing your local changes.
 	@echo
-	git merge upstream/master
+	git merge upstream/$(GITR_BRANCH_NAME)
 	@echo
 
 ## Commit the changes to the repo
@@ -120,7 +124,7 @@ gitr-fork-commit:
 
 ## Push the repo to orgin
 gitr-fork-push:
-	git push origin master
+	git push origin $(GITR_BRANCH_NAME)
 
 ## Opens the forked git server.
 gitr-fork-open:
