@@ -17,6 +17,25 @@ We can connect over the GRPC CLI and inspects and use the Web GUI r CLi to inspe
 
 Because use GRPC so much the standard GRPC tools are a given. We just need to proxy the output of all that stuff into our Tele.db.
 
+## Remote Tele
+
+We need to also do tele on the actual running servers themselves.
+
+Its tempting to do this using cloud SAAS, but there are such good looks out there in golang it seems silly.
+
+And with just binaries, its easy to run them on Servers.
+
+Logs
+- loki
+	- https://grafana.com/docs/loki/latest/installation/local/
+	- Onto K8: https://grafana.com/docs/loki/latest/installation/tanka/
+		- https://github.com/grafana/tanka
+		- https://github.com/jsonnet-bundler/jsonnet-bundler
+		- so we dont have to manage scaling on our own servers
+	- agent: https://github.com/afiskon/promtail-client
+		- suppot JSON and protobuf
+		- can can use from flutter when we embed maybe.
+
 
 
 
