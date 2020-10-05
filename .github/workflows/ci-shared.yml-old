@@ -15,25 +15,24 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest]
         go-version: [1.15.2]
-        target: ["this-ci-check",]
+        target: ["this-dep",]
 
     runs-on: ${{ matrix.os }}
 
     steps:
       - name: Set up Go 
-        uses: actions/setup-go@v2.1.3
+        uses: actions/setup-go@v1
         with:
           go-version: ${{ matrix.go-version }}
         id: go
 
-      - name: Check out code into the Go module directory
+      - name: Check out THIS into the Go module directory
         uses: actions/checkout@v2
-
-      - name: Get dependencies
-        run: |
-          go get -v -t -d ./...
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: go/src/github.com/${{ github.repository }}
 
       - name: make ${{ matrix.target }}
         run: |

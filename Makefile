@@ -40,6 +40,11 @@ this-print-all: ## print
 
 	$(MAKE) flu-gen-lang-print
 
+this-ci-check:
+	# just to check calling make from CI works
+
+	@echo "Hello CI"
+
 
 this-dep:
 	# none
