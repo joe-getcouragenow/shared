@@ -4,6 +4,11 @@ High level.
 
 ## V2
 
+static GUI
+- need to adjust the GUI before we connct it to the backend. This is because Biz want a static demo ASAP
+- The Gcloud deploy is a mess, and so best to deploy to Hertzner
+- SO we need to get the main loader working here: https://github.com/getcouragenow/main/tree/master/deploy/templates/maintemplatev2/server
+
 Generate
 
 - Using shared makefile
