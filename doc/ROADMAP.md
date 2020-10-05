@@ -16,6 +16,7 @@ GRPC and CLI
 - v2 single and v3 dual binary
 
 Sys-core: Cron
+
 - Its needed for:
 	- backups
 	- sending reports from mod-disco
@@ -24,16 +25,21 @@ Sys-core: Cron
 	- Mhh seems we might need Subscribe off Badger DB earlier than i thought. Could use polling ( ironically a Cron) to just check the DB for changes.
 - Need ability to access the schedules from the GRPC API.
 
-
 Sys-core: Data
 
 - Test data and real data
+- generated
 - embedded
 
 sys-core: Migrate
 
+- generated scaffold via sdk cli
+	- Uses UTC Data Time
+	- Using the sys-coe: DUMB for the tables the Modules uses.
 - embedded
 - available over CLI
+- working in sys-core
+	- It must parse ALL of the migrations for all modules and then apply them in global order. They are UTC DateTime
 - expressed read only in Flutter.
 
 Sys-core: Ops
