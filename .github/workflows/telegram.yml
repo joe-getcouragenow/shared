@@ -1,0 +1,26 @@
+name: Telegram 
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Send PR notification to Telegram
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        format: markdown
+        message: |
+          *${{ github.actor }}* PR-${{ github.event.number }} in *${{ github.event.repository.name }}*
+          
+          A new PR has been created.
+          You can check it in [Github Url]${{ github.event.number }}
