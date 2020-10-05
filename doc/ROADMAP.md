@@ -15,6 +15,16 @@ GRPC and CLI
 - hooked up to sys-core fully
 - v2 single and v3 dual binary
 
+Sys-core: Cron
+- Its needed for:
+	- backups
+	- sending reports from mod-disco
+- Need ability for Cron to work off the DB
+	- When changed, it makes sense to flush those in memory
+	- Mhh seems we might need Subscribe off Badger DB earlier than i thought. Could use polling ( ironically a Cron) to just check the DB for changes.
+- Need ability to access the schedules from the GRPC API.
+
+
 Sys-core: Data
 
 - Test data and real data
