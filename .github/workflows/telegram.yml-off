@@ -1,5 +1,7 @@
 name: Telegram 
 
+# see: https://github.com/appleboy/telegram-action
+# test with: https://api.telegram.org/bot<token>/getUpdates
 # Using Secrets. 
 
 on:
