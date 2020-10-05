@@ -10,5 +10,3 @@ Then connect to the hidden Servers to get whatever golang software you need on i
 Now with our own CHI running, you can close down WARP.
 Then update the Client software to use or CHI public proxy server URL.
 Now we and public can hit the CHI public proxy, and it will forward requests to the correct hidden Server no matter where it is.
-
-

@@ -80,3 +80,24 @@ https://github.com/nextdns/nextdns/tree/master/host
 
 We will implement the DNS and ESNI check also into your own server.
 SO we can tell the user they are leaking and advice them.
+
+DNS
+
+Will use Adguard one
+https://github.com/AdguardTeam/AdGuardHome
+- they are adding ESNI etc currently.
+
+
+## ESNI Relay
+
+The Tunnel can incororate the ESNI relay
+
+https://github.com/iyouport-org/relaybaton
+- This can be runnng on Server and embedded in mobile and desktop
+- Its really nice.
+- Will means that uses are using ESNI and with our DNS are protected
+- China GReat Firewall of China is now blocking all ESNI connections
+	- Spoofing it cant work on Cloudflare DNS because they disallow it now
+	- But it will on our Own DNS :)
+- Will will present the Chcker to the User so they can make sure they are safe.
+	- It will run off our system. Is easy.
