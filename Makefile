@@ -51,7 +51,7 @@ this-build:
 	cd ./tool && $(MAKE) this-all
 
 	# SDK
-	cd ./sdk && $(MAKE) this-all
+	#cd ./sdk && $(MAKE) this-all
 
 
 ### Sync
