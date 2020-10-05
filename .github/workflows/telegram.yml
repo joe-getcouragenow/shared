@@ -22,5 +22,5 @@ jobs:
         message: |
           *${{ github.actor }}* PR-${{ github.event.number }} in *${{ github.event.repository.name }}*
           
-          A new PR has been created.
+          A new PR has been created !
           You can check it in [Github Url]${{ github.event.number }}
