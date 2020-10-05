@@ -89,6 +89,26 @@ go-os-clean:
 	go clean -modcache
 	go clean -testcache
 
+## Checks that if else using GO OS works
+go-os-check:
+
+	@echo
+	@echo -- go-os-check --
+
+ifeq ($(GO_OS), windows)
+	@echo Windows detected
+
+else
+	
+ifeq ($(GO_OS), linux)
+	@echo Linux detected
+
+else
+	@echo Darwin detected
+	
+endif
+endif
+
 ## Updates go mod file
 go-mod-fix:
 	# whatever is needed here.

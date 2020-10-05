@@ -131,3 +131,22 @@ When it runs a Data load ( Test or Real )
 
 
 
+## Libs
+
+just my running notes ...
+
+Check the old repo as we had all this done there...
+https://github.com/getcouragenow/bootstrap
+
+- sdk
+- ci
+	- https://github.com/getcouragenow/bootstrap/blob/master/ci/os/util/windows.go
+		- doing powershell
+- common
+- gen
+	- https://github.com/getcouragenow/bootstrap/tree/master/ci/gen
+	- looks like we can use.
+
+
+https://github.com/bhendo/go-powershell
+- might need
