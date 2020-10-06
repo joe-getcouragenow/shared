@@ -13,6 +13,11 @@ Sys-acconts
 - Flutter Dialoge based SignUp, SignIn, Change apssword, Recover word
 	- ALL Flutter code in sys-share !!
 	- Copy stuff out from Product Web ex.
+	- needs location
+		- mod-account level
+			- will be saves as meta data
+			- Will get Widget and Data from sys-shared/timespace
+				- Dta will need to be multi-lang..(later)
 	- needs email
 	- needs email templates.
 		- see Repo shared/exp/email.
@@ -23,6 +28,45 @@ static GUI
 	- https://github.com/getcouragenow/main/tree/master/deploy/templates/maintemplatev2/server
 	- comment out the shit
 	- get it just running a golang server serving the flutter
+	- Page 1: https://maintemplate.ci.getcouragenow.org/#/userInfo
+		- We dont need it anymore
+		- We ask for their location in the Signin, so its part of mod-accont meta data.
+			- In Sys-accounts will need to provide a Page for Usrs to update their location and other stuff of course.
+	- Page 2: Choose Campaign
+		- EX: https://maintemplate.ci.getcouragenow.org/#/orgs/0
+		- Campaign Details needs a Video ( loads from YOuTUbe)
+			- there is a flutter mod that works on all targets that can load Youtube videos with no Token needed. Find it.
+	- Now use a Flutter Stepper for the next pages.
+		- State is in one page.
+		- Better for Users as faster and less cognitive overload.
+		- LIb ex:
+			- https://github.com/AseemWangoo/flutter_programs/blob/master/StepperWithForm.dart
+			- Find cleaner lib !!
+	- Page 3: Your Needs
+		- Data and Layout
+			- https://docs.google.com/document/d/1LGkCEzh2CwwW6VYTYxXsDW14gYrzly0gwZtfrkbTG9Y/edit#heading=h.4ngwhe68g115
+		- EX: 
+			https://maintemplate.ci.getcouragenow.org/#/myneeds/orgs/001
+			- Data Driven from json still.
+			- Must have ordering control..
+			- Bottom command should NOT be a popup, but as described in the Data and Layout (above), and so step to the right part of the stepper.
+			- For demo just embed, and later we will load from DB.
+	- Page 4: Support roles
+		- Data and layout:
+			https://docs.google.com/document/d/1LGkCEzh2CwwW6VYTYxXsDW14gYrzly0gwZtfrkbTG9Y/edit#heading=h.fb8pr4hlpyzy
+		- EX:
+			- https://maintemplate.ci.getcouragenow.org/#/supportRoles/orgs/001
+			- no slider, but instead Checkbox. EASY.
+	- Page 5: SignUp
+		- Dialogue opens
+		- Stepper state in background :)
+			- SO we dont have to do any insane state crap.
+	- Page 6: Dashboard
+		- Data and Layout:
+			- https://docs.google.com/document/d/1LGkCEzh2CwwW6VYTYxXsDW14gYrzly0gwZtfrkbTG9Y/edit#heading=h.p7jninue1cfs
+		- Ex:
+			- https://maintemplate.ci.getcouragenow.org/#/dashboard/orgs/0
+
 - deploy to Hertzner
 
 Generate
