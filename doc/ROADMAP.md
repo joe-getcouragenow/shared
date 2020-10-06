@@ -73,3 +73,16 @@ sys
 mod-ion
 - working of badger, and not redis.
 
+sys-lang
+- we need translations to be machine translated and then override by humans
+	- best way is to make it run off files, that are then loaded into the DB. So its using the embed approach like other modules
+	- Humans translators can run the system in "dev mode" and so its all driven off the embedded golang, NOT the DB.
+		- These files need to be additive.
+		- And go back into the source and git.
+	- Flutter no longer embeds the JSON in he assets, but instead asks the Server for the files when the user changes lang
+	- Golang can also use the same JSON files
+		- Use an ARB to describe.
+		- https://github.com/empirefox/protoc-gen-dart-ext
+			- https://github.com/empirefox/protoc-gen-dart-ext/search?q=arb
+
+	
