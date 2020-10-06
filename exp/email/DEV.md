@@ -45,7 +45,6 @@ https://github.com/matcornic/hermes
 
 https://github.com/LoginRadius/engineering-blog-samples/tree/master/GoLang/DifferentWaysToSendEmail
 
-
 https://github.com/jiharal/libmail
 - can use sendgrid or others.
 
