@@ -4,10 +4,26 @@ High level.
 
 ## V2
 
+Sys-acconts
+
+- Repo Sys builds into its own server with all its modules.
+- Repo Main builds v2 and v3
+	- mod-account
+	- using sys account.
+- Flutter Dialoge based SignUp, SignIn, Change apssword, Recover word
+	- ALL Flutter code in sys-share !!
+	- Copy stuff out from Product Web ex.
+	- needs email
+	- needs email templates.
+		- see Repo shared/exp/email.
+
 static GUI
-- need to adjust the GUI before we connct it to the backend. This is because Biz want a static demo ASAP
-- The Gcloud deploy is a mess, and so best to deploy to Hertzner
-- SO we need to get the main loader working here: https://github.com/getcouragenow/main/tree/master/deploy/templates/maintemplatev2/server
+
+- Use Repo main/templatev2 !!
+	- https://github.com/getcouragenow/main/tree/master/deploy/templates/maintemplatev2/server
+	- comment out the shit
+	- get it just running a golang server serving the flutter
+- deploy to Hertzner
 
 Generate
 
@@ -53,13 +69,7 @@ Sys-core: Ops
 	- go tests doing it.
 - Config
 
-Sys-acconts
 
-- Flutter Dialoge based SignUp, SignIn, Change apssword, Recover word
-	- needs email
-	- needs email templates.
-mod-accont
-	- using sys accont
 
 
 ## V3
