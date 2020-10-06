@@ -65,15 +65,20 @@ mod-accont
 ## V3
 
 sys
+
 - subscribe to badger updates
 	- this will make alot of things easier.
-	- there is an option to use NATS also but only if we embed it.
+	- there is an option to use NATS also but only if we can embed it.
 		- In which case the event from subscribe will be sent to NATS.
+		- Prob works using Jetstream BTW
+	- if we ever decide to use NATS with Clent then use golang and cross compile a wrapper that can use tcp and websockets/ quic
 
 mod-ion
-- working of badger, and not redis.
+
+- working off genji badger, not redis. NATS can work with it.
 
 sys-lang
+
 - we need translations to be machine translated and then override by humans
 	- best way is to make it run off files, that are then loaded into the DB. So its using the embed approach like other modules
 	- Humans translators can run the system in "dev mode" and so its all driven off the embedded golang, NOT the DB.
@@ -85,4 +90,15 @@ sys-lang
 		- https://github.com/empirefox/protoc-gen-dart-ext
 			- https://github.com/empirefox/protoc-gen-dart-ext/search?q=arb
 
-	
+sys-lang
+
+- need to handle currencies (https://github.com/gtgalone/currency_text_input_formatter)
+
+sys-privacy
+
+- need global privacy policy that works for different jurisidcations.
+- Use theirs. Fork and alter: https://github.com/github/site-policy
+	- forked here: https://github.com/getcouragenow/site-policy
+- used in Docs, CLI and Flutter.
+- Must prompt when policy changes in CLI and Flutter.
+	- See [privacy_screenshot](https://github.com/getcouragenow/shared/tree/master/doc/roadmap/privacy_screenshot.png)
