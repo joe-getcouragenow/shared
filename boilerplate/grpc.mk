@@ -30,6 +30,14 @@ LIB_GO_REPO=					github.com/protocolbuffers/protobuf-go
 LIB_GO_REPO_FSPATH=				$(GOPATH)/src/$(LIB_GO_REPO)
 LIB_GO_REPO_VERSION= 			v1.25.0
 
+# protoc-gen-cobra
+LIB_GOGRPCCOBRA_REPO=				github.com/getcouragenow/protoc-gen-cobra
+LIB_GOGRPCCOBRA_REPO_FSPATH=		$(GOPATH)/src/$(LIB_GOGRPCCOBRA_REPO)
+#LIB_GOGRPCCOBRA_REPO_VERSION= 		v1.25.0
+
+
+
+
 # Old ( last update in 14 May, 2020, so very old )
 # https://github.com/golang/protobuf/
 LIB_GOOLD_REPO_REPO=			github.com/golang/protobuf
@@ -69,6 +77,11 @@ grpc-print:
 	@echo -- GO Protobuf compiler --
 	@echo LIB_GO_REPO_FSPATH: 			$(LIB_GO_REPO_FSPATH)
 	@echo LIB_GO_REPO_VERSION: 			$(LIB_GO_REPO_VERSION)
+
+	@echo
+	@echo -- GO GRPC COBRA Protobuf compiler --
+	@echo LIB_GOGRPCCOBRA_REPO: 		$(LIB_GOGRPCCOBRA_REPO)
+	@echo LIB_GOGRPCCOBRA_REPO_FSPATH: 	$(LIB_GOGRPCCOBRA_REPO_FSPATH)
 	
 	@echo
 	@echo -- OLD Golang Protobuf compiler --
