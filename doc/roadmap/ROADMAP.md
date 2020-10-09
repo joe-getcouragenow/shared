@@ -6,13 +6,9 @@ High level.
 
 Alex
 
-main
-- imports sys:Service to make a server here.
-
-
-
 1. join up v2 and v3 so that from main downwards we can build and deploy.
-- must be able to run vual binaries.
+- must be able to run dual binaries.
+	- check go.sum that we DONT leak sys too much.
 - because then all tests in CI can use the REAL running Server.
 - This is where we see the whole thing working or not
 	- In v3 dual mode, the Mod-* use GRPC calls
@@ -165,6 +161,31 @@ Sys-core: Ops
 
 ## V3
 
+CI
+
+- Need android and IOS to build
+	- https://github.com/google/mediapipe/blob/master/setup_android_sdk_and_ndk.sh
+
+Provider Patterns
+
+- Subscriptions. 
+- Able to Test in CI
+	- SO MUST NOT be dependent on FLutter
+- Reactive so that UI updates naturally.
+- https://github.com/flutterdata/flutter_data
+- https://github.com/flutterdata/data_state/tree/master/packages/data_state
+	- NOT dependent on Flutter
+- https://github.com/flutterdata/flutter_data_json_api_adapter
+	- Will be easy to modify this generator to work with Protobufs
+	- This basically generates Dart Models to work with your GRPC Protobufs
+
+sys-db
+
+- https://github.com/go-gorm
+	- I think that adding a dialect for Genji here is very possble.
+	- BUT might be overkill.
+	- sqlc looks cleaner: https://github.com/kyleconroy/sqlc
+
 sys
 
 - subscribe to badger updates
@@ -178,6 +199,13 @@ sys
 		- Cluster: https://github.com/emitter-io/emitter/tree/master/internal/service/cluster
 		- Deploy: https://github.com/emitter-io/emitter/tree/master/deploy/k8s
 			- Can easily convrt to use k3d, and so be on preimse and cloud adgnostic
+
+kanban
+
+- https://github.com/traggo/server
+	- looks perfect
+	- uses gorm, so not too hard to replace with genji.
+
 
 mod-ion
 

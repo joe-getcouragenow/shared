@@ -113,6 +113,10 @@ grpc-all-git-clone:
 	git clone https://$(LIB_GO_REPO) $(LIB_GO_REPO_FSPATH)
 	cd $(LIB_GO_REPO_FSPATH) && git checkout $(LIB_GO_REPO_VERSION)
 
+	# protoc-gen-cobra
+	git clone https://$(LIB_GOGRPCCOBRA_REPO) $(LIB_GOGRPCCOBRA_REPO_FSPATH)
+	##cd $(LIB_GOGRPCCOBRA_REPO_FSPATH) && git checkout $(LIB_GO_REPO_VERSION)
+
 	# OLD golang protobuf compiler
 	# git clone https://$(LIB_GOOLD_REPO_REPO) $(LIB_GOOLD_REPO_REPO_FSPATH)
 
@@ -127,6 +131,8 @@ grpc-all-git-delete:
 	rm -rf $(LIB_GRPCUI_REPO_FSPATH)
 	rm -rf $(LIB_GOGRPC_REPO_FSPATH)
 	rm -rf $(LIB_GO_REPO_FSPATH)
+	rm -rf $(LIB_GOGRPCCOBRA_REPO_FSPATH)
+	
 	#rm -rf $(LIB_GOOLD_REPO_REPO_FSPATH)
 	#rm -rf $(LIB_GRPC_GATEWAY_REPO_FSPATH)
 
@@ -135,6 +141,10 @@ grpc-all-vscode-add:
 	code --add $(LIB_GRPCUI_REPO_FSPATH) --reuse-window
 	code --add $(LIB_GOGRPC_REPO_FSPATH) --reuse-window
 	code --add $(LIB_GO_REPO_FSPATH) --reuse-window
+	code --add $(LIB_GOGRPCCOBRA_REPO_FSPATH) --reuse-window
+
+
+
 	#code --add $(LIB_GOOLD_REPO_REPO_FSPATH) --reuse-window
 	#code --add $(LIB_GRPC_GATEWAY_REPO_FSPATH) --reuse-window
 
@@ -285,6 +295,9 @@ grpc-go-build:
 	# Golang GRPC
 	cd $(LIB_GOGRPC_REPO_FSPATH)/cmd/protoc-gen-go-grpc && go install .
 
+	# Golang protoc-gen-cobra
+	cd $(LIB_GOGRPCCOBRA_REPO_FSPATH) && go install .
+	
 	# Golang GRPC Gatway
 	#cd $(LIB_GRPC_GATEWAY_REPO_FSPATH)/protoc-gen-grpc-gateway && go install .
 
