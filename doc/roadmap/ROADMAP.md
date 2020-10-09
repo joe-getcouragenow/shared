@@ -14,6 +14,9 @@ main
 1. join up v2 and v3 so that from main downwards we can build and deploy.
 - must be able to run vual binaries.
 - because then all tests in CI can use the REAL running Server.
+- This is where we see the whole thing working or not
+	- In v3 dual mode, the Mod-* use GRPC calls
+	- in v2 single mode, the Mod-* use Go calls.
 
 2. Test data (really basic)
 - Just a basic script to inject the basic into our DB.
