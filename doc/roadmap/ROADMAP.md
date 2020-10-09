@@ -4,12 +4,49 @@ High level.
 
 ## V2
 
+Alex
+
+main
+- imports sys:Service to make a server here.
+
+
+
+1. join up v2 and v3 so that from main downwards we can build and deploy.
+- must be able to run vual binaries.
+- because then all tests in CI can use the REAL running Server.
+
+2. Test data (really basic)
+- Just a basic script to inject the basic into our DB.
+	- via the CLI API.
+- 2 orgs, and 2 projects in each org
+- 2 users which have access to one or 2 of those orgs
+- etc etc
+
+3. signin, signup screen. can look like shit
+- Get it working with a "mod-dummy" Module. Mod-disco is a nightmare still.
+- Give mod-dummy its own Nav ICON in the GUI.
+- 2 or 3 routes
+- Apply the guards and signup to them.
+- leave staced in and lets see how it works with Flutter Modular
+- riverpod will latr be out saign grace because Tests can run in CI.
+
+4. Flutter modular guards. We have the API and DB for Accounts, so lets use it with the guards
+- What a user sees in their UI is pre-determined by their Accounts Data.
+
+5. How we use the guards and signup together.
+
+
 Sys-acconts
 
 - Repo Sys builds into its own server with all its modules.
 - Repo Main builds v2 and v3
-	- mod-account
-	- using sys account.
+	- using mod-account with uses using sys account.
+
+- Embedding
+	- github.com/go-bindata/go-bindata
+	- Dont need github.com/elazarl/go-bindata-assetfs, because go-bindata has it now.
+	- We need to decide what we will use for the assets of each module and i think this is the best one.
+
 - Flutter Dialoge based SignUp, SignIn, Change apssword, Recover word
 	- ALL Flutter code in sys-share !!
 	- Copy stuff out from Product Web ex.
@@ -19,8 +56,15 @@ Sys-acconts
 			- Will get Widget and Data from sys-shared/timespace
 				- Dta will need to be multi-lang..(later)
 	- needs email
+		- https://github.com/jordan-wright/email
+			- looks pretty good to me !!
 	- needs email templates.
 		- see Repo shared/exp/email.
+	- needs sms for 2FA
+		- https://github.com/sfreiberg/gotwilio
+		- V3 i think...
+	- example of them all used together:
+		- https://github.com/zhiminwen/amwebhook/blob/master/main.go
 
 static GUI
 
@@ -125,12 +169,31 @@ sys
 	- there is an option to use NATS also but only if we can embed it.
 		- In which case the event from subscribe will be sent to NATS.
 		- Prob works using Jetstream BTW
-	- if we ever decide to use NATS with Clent then use golang and cross compile a wrapper that can use tcp and websockets/ quic
+	- there is another option to use Emitter, whcih uses Badger and clusters it. 
+		- https://github.com/emitter-io/emitter
+		- Badger: https://github.com/emitter-io/emitter/blob/master/internal/provider/storage/ssd.go
+		- Cluster: https://github.com/emitter-io/emitter/tree/master/internal/service/cluster
+		- Deploy: https://github.com/emitter-io/emitter/tree/master/deploy/k8s
+			- Can easily convrt to use k3d, and so be on preimse and cloud adgnostic
 
 mod-ion
 
-- working off genji badger, not redis. NATS can work with it.
+- Less coupled to ion solution for our needs.
+	- https://github.com/screego/server
 
+- store
+	- working off genji badger so we get a easy to deplyo and run stack.
+	- Redis: https://github.com/pion/ion/blob/master/pkg/db/redis.go
+		- easy to convert to useing Emitter
+	- NATS: github.com/cloudwebrtc/nats-protoo
+		- easy to convert to using Emitter Proto
+- turn
+	- integrate Turn as a Service. 
+		- code: https://github.com/pion/turv
+		- Its already designed to be Embeddable.
+			- See: https://github.com/pion/ion/blob/master/go.sum#L286
+		- When our Server boots tell the binary to run as that, so we can scale the system.
+	
 sys-lang
 
 - we need translations to be machine translated and then override by humans
