@@ -5,6 +5,28 @@ The Architecture is designed to be an End to End secure system.
 
 See the [sys-core](https://github.com/getcouragenow/sys/tree/master/sys-core) for the code and domain model and the roles and permissions.
 
+## Development Status
+
+https://github.com/getcouragenow/sys-share is a good place to start
+
+This is system code that is shared with the Modules. Modules are written by others.
+
+https://github.com/getcouragenow/sys is the next place to look.
+
+This is where all state is stored. Its a bit beta. We plan to go back into that and do a fair bit of work.
+
+The database encryption and back up is there and works. Its pretty fresh code.
+
+The Sys-share Repo has a CLI, and you can Auth and interact with the systhem using it.
+
+Everything uses Protobufs. Why ? So that the API is tight and is code generatd. Less developer slips ups then. The CLI that uses the GRPC Protobufs is itself code generated from the Protobufs.
+
+JWT is used for Auth.
+
+AuthZ is Not enforced yet. It will be soon. We are working on it this week.
+
+Validation of Protobufs will happen very soon. This is also code generated. We are just waiting on a release from Google fo that lib as its not currently compatible with the code generator we are using. I expect it to be a week or 2 away.
+
 ## Wire level Security
 
 Benefits of securing the wire between a users device and the Servers:
