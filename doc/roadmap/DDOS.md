@@ -36,3 +36,17 @@ Tunnel
         - https://duo.com/decipher/internet-standards-emphasize-user-privacy-at-expense-of-enterprise-security
     - ESNI issues
         - China is banning all Servers using it, and because of so many serevrs running with virtual IPS mapped to Public static IPs in data center, a singel banning by China takes out thousands of serevrs in reality.
+    - HPKE
+        - ECH relies on HPKE (Hybrid Public Key Encryption) which is the Encryption Discovery mechanism
+        - standard: https://tools.ietf.org/html/draft-irtf-cfrg-hpke-05
+        - golang implemenation: https://github.com/cisco/go-hpke
+    - MLS
+        - Message Layer Security as used by Singla and Wire
+        - golang implemenation: https://github.com/cisco/go-mls
+    - Firefox is implementing ECH :)
+        - https://www.mail-archive.com/dev-platform@lists.mozilla.org/msg29389.html
+        - in nightly ?
+        - "network.security.ech.enabled" is the setting
+        - ESNI will be removed
+    - Chrome is alos working on it.
+        - https://bugs.chromium.org/p/chromium/issues/detail?id=1091403

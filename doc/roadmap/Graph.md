@@ -20,3 +20,12 @@ We can do this with bleve.
 https://blevesearch.com/docs/Result-Faceting/
 - go: https://github.com/alash3al/bbadger
 - probably others
+- also IPFS makes sense as the store sicne it has the CRDT Badger stuff which will give us the scaling we need.
+    - https://github.com/ipfs/go-ds-crdt
+    - wrappers: https://github.com/amirylm/libp2p-facade
+        - https://github.com/amir-yahalom/go-csn. See the CMD:
+            - boot node is the Discovery server. It prob tracks the http gateways and nodes.
+            - http-gateway is the way in to the nodes and so protects the privacy of the nodes.
+            - node is a users node. Like a desktop, mobile or rasp pi.
+https://github.com/lanzafame
+    - dude workng on IPFS search

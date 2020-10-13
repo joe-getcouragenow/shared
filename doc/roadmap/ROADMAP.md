@@ -6,6 +6,17 @@ High level.
 
 Alex
 
+Monday
+- mod-account
+	- copy to make a mod-dummy. Fix mod-dummy:
+		- exactly as it is now.
+		- just find / replace on the namespace to be "mod-dummy"
+	- use the sys-account doman model.
+	- use the meta field to hold the research data.
+
+- mod-dummy
+	
+
 1. join up v2 and v3 so that from main downwards we can build and deploy.
 - must be able to run dual binaries.
 	- check go.sum that we DONT leak sys too much.
@@ -26,8 +37,8 @@ Alex
 - Give mod-dummy its own Nav ICON in the GUI.
 - 2 or 3 routes
 - Apply the guards and signup to them.
-- leave staced in and lets see how it works with Flutter Modular
-- riverpod will latr be out saign grace because Tests can run in CI.
+- leave stack in and lets see how it works with Flutter Modular
+- riverpod will later be out saign grace because Tests can run in CI.
 
 4. Flutter modular guards. We have the API and DB for Accounts, so lets use it with the guards
 - What a user sees in their UI is pre-determined by their Accounts Data.
@@ -85,6 +96,9 @@ static GUI
 		- LIb ex:
 			- https://github.com/AseemWangoo/flutter_programs/blob/master/StepperWithForm.dart
 			- Find cleaner lib !!
+				- https://github.com/cph-cachet/research.package
+					- much better 
+					- 
 	- Page 3: Your Needs
 		- Data and Layout
 			- https://docs.google.com/document/d/1LGkCEzh2CwwW6VYTYxXsDW14gYrzly0gwZtfrkbTG9Y/edit#heading=h.4ngwhe68g115
