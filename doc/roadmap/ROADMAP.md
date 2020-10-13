@@ -4,6 +4,114 @@ High level.
 
 ## V2
 
+What is needed to get V2 out the door ?
+Rosie and gary.
+
+- Main v2 building.
+	- sign in working.
+- Rsearch Package (DONE)
+	- "Check consideration" branch works for web and branched survey. back works. cancel works.
+- modular: sys config ( LOE: 2 - 3 days )
+	- all modules using github.com/gen0cide/cfx
+	- will be packed into embedder and then unpacked higher up and merge into one base.yaml
+		- so seeder needs to merge configs.
+- modular: sys routes for grpc (LOE: 2 days )
+	- each module has a config loader.
+	- one aspect is to load the GRPC routes.
+		- so that any MAIN at any level can use them.
+	- need a Service.go per module
+	- us it from top level main.
+- modular: Service (LOE: 1 day )
+	- Needs Service.go
+		- sucks routes, etc out of the config.
+		- used by examples and main.
+	- Each module needs to do this.
+- Wire sys-account / mod-account up from Main downward ( LOE : 1 hr )
+	- using config, routes and service.
+- Wire up sys-core and shared sys-core.
+	- using config, routes and service.
+	- dao ( json to genji mapping)
+- Bootstrap system ( LOE: 1 day )
+	- sys CLI ( 1 day )
+	- create org and project and default accounts.
+		- golang driven. just add a CMD to the existing CLI for shared sys-core 
+- Sys DB (LOE: 4 days )
+	- fix account creation so it checked for upserts. ( .5 day)
+	- fix cron job so it is non blocking.
+	- finish backup (nightly)
+		- must be streaming. ( 2 days )
+		- copies them to s3 google storage. ( 1 day )
+		- restore from s3 ( .5 day )
+		- not differential backups.
+- mod-account hardcoded to load the same survey (LOE: ??? )
+	- bring in Research Package
+		- check works from top main down.
+		- hack it to have the Condition and Support Roles
+	- so all orgs / projects use the same survey
+	- flutter needs to save this data to DB via the shared sys-account Protobuf.
+		- save the "Survey" JSON into the respective Meta Field
+		- save the "Condition" and "Support Roles" data into the respective Meta Fields
+			- so then when we do the SQL query for the dashboard we are only doing standard SQL and not dealing with JSON.
+		- save the Filter types data into the respective Meta Fields. Get this from the Survey JSON.
+			- so the Dashboard Filters can use this.
+	- Modify the shared sys-account Protobuf to allow the above.
+	- User can redo the survey
+		- override the above data.
+	- dashboard 
+		- Load the Filer types via the Meta Field Proto
+		- Do the SQL query via the DB at shared sys-account
+- sys-account
+	- when user signs out, invalidate JWT.
+	- when user times out, invalidate JWT.
+		- currently 30 minutes.
+		- so after 30 minutes they MUST login again.
+	- email (sys-core, exposed via sys-shaesys-share)
+		- template, and email lib
+		- config.
+		- for signup to check its a real email
+		- for change password 
+		- for password recovery, if they forgot
+		- NO 2FA at this stage.
+- guards (LOE: )
+	- so that GUI and Server enforces access
+	- use the JWT .
+	- GUI
+		- encorce gui NAV display
+		- enforce routes
+		- context, so that all calls to sys have the igh Og and Project context
+	- Server
+		- load the Nav display Data, and expose over JWT claims.
+		- enforce routes at GPRC using JWT
+		- Context loaded per request using JWT. Not using Sessions because JWT is our session cookie.
+
+- seeder ( 5 days )
+	- dont use mage.
+	- is called by go:generate
+	- is a main.go in each module, so it can be compiled in CI.
+		- replaces make this-dep.
+		- installs to global go bin path.
+	- proto
+	- flu
+	- embedder "seeder pack / unpack"
+	- config merging
+		- suck out each module config that is embedded and turn into base.yaml
+
+
+- Deployment ( 2 days )
+	- Just use goreleaser ( 1 day )
+	- Setup iceland server via Hertzner, manually grab the binary and put onto Server in Iceland. ( 1day )
+		- make it repeatable.
+
+
+BUT...
+
+- Have not done SQL Migrations, so then if Production v2 has issues we cant fix them.
+- Needs UAT testing still. 
+
+
+---
+
+
 Alex
 
 Monday
@@ -13,9 +121,12 @@ Monday
 		- just find / replace on the namespace to be "mod-dummy"
 	- use the sys-account doman model.
 	- use the meta field to hold the research data.
-
-- mod-dummy
-	
+	- copy the existing example up to mod-account.
+		- we will hard code the questions into the code.
+		- we will hard the Org and Project via the DB using the CLI.
+		- So if i as admin made a 2nd Project it would have the same questions.
+	- make sure you can load up a users already done research again, so they can see their old answers and redo the survey.
+	- singin
 
 1. join up v2 and v3 so that from main downwards we can build and deploy.
 - must be able to run dual binaries.
