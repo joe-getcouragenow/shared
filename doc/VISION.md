@@ -33,21 +33,23 @@ To access the data when your not at home you have 2 options:
 
 Private keys are all great, but what if you want to be even more secure, and not rely on the private key being stored in the TPM chip of your device.  
 
-The Apple hardware has known flaws already, as do most laptops. 
-This is why government ministers have the TPM chip replaced in all thier hardware. 
+This is why government ministers have the TPM chip ( https://en.wikipedia.org/wiki/Trusted_Platform_Module ) replaced in all thier hardware. 
+
+The Apple hardware has known flaws already, as do most laptops.
 
 - https://arstechnica.com/information-technology/2020/10/apples-t2-security-chip-has-an-unfixable-flaw/
-- https://en.wikipedia.org/wiki/Trusted_Platform_Module
 
 Its also why governments buy Intel CPU chips without the IME chip functionality. Its actualy a chip inside a chip.
 
 - https://en.wikipedia.org/wiki/Intel_Management_Engine
 
-Its also ironicaly heavily backdoored by the Chinese in the data centers.
+Then there is backdoor chips by the Chinese in the data centers.
 
 - https://www.bloomberg.com/news/features/2018-10-04/the-big-hack-how-china-used-a-tiny-chip-to-infiltrate-america-s-top-companies
 
-The solution is to hold your own hardware that acts as the TPM. 
+And lastly all the stuff that is still zero day explotis and has not yet been disclosed to the public, because these explots are being activdly used.
+
+Because of this and many other backdoors and bugs with security chips, the solution is to hold your own hardware that acts as the TPM. 
 
 When you login to the Web, Dekstop or Mobile app, the system will prompt you to press a button on the Hardware.
 It will then do the Authentication with the app. 
