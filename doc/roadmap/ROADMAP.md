@@ -5,7 +5,11 @@ High level.
 ## V2
 
 What is needed to get V2 out the door ?
-Rosie and gary.
+Rosie and gary. 
+Research Package / Survey = Enrolment module
+CLI = Command Line Interface
+LOE = Level of effort
+
 
 - Main v2 building.
 	- sign in working.
