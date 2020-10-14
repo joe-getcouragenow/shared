@@ -6,4 +6,8 @@ include $(BOILERPLATE_FSPATH)/grpc.mk
 
 ## All
 this-all: grpc-all
+	
+	$(MAKE) jsonnet
+jsonnet:
+	# go get ...
 
