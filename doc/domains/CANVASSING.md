@@ -2,7 +2,7 @@
 
 Intro... 
 
-## Problem
+## Problem Statement
 
 Relavent Terms and Definitions:
 

@@ -4,7 +4,7 @@ Many orgs need to work and collaborate on legal cases or just manage their legal
 
 This document highlights how a legal team or any org that need to work with legal matters can use the software to accelerate their processes, and have a fully secure system where they hold all the data themselves.
 
-## Problem
+## Problem Statement
 
 A legal team during discovery and deposition phase are often faced with mountains of documents and multimedia.
 
