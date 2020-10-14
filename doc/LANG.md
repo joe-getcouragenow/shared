@@ -1,7 +1,7 @@
 
 ## Language
 
-This is a high level summary of the Languages system.
+This is a high level summary of the languages system.
 
 
 
@@ -14,7 +14,7 @@ Typically third parties or software are needed to get around this problem. You c
 ## Solutions:
 
 
-All Documents are indexed, so that all the Team can concurently work from anywhere.
+All Documents are indexed, so that all the team can concurently work from anywhere.
 
 Documents are transcribed into the Teams lanuguage, and also other actors' languages.
 
@@ -30,11 +30,11 @@ The software runs in all human languges.
 
 Documents are scanned into the sytem. 
 
-The system then translates them to English and the other Team members' languages.
+The system then translates them to English and the other team members' languages.
 
 Then it indexes the documents.
 
-Provides facets to be applied, to allow Teams to do facet search.
+Provides facets to be applied, to allow teams to do facet search.
 
 Why ?
 
@@ -44,18 +44,18 @@ Why ?
 
 ### Audio
 
-Same as OCR but applied to any Audio.
+Same as OCR but applied to any audio.
 
 These are translated and also transcribed to text, so it can be indexed and then searched against as needed.
 
 Why ?
 
-- Part of a Project can involve audio files.
+- Part of a project can involve audio files.
 
 
 ### Video Conferencing
 
-Same as OCR but for Video conferencing.
+Same as OCR but for video conferencing.
 
 In a 2 person or many person chat or video conference it translates the chat text and the audio to everyones own languages in real time.
 
