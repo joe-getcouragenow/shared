@@ -6,15 +6,15 @@ This document highlights how a legal team or any org that need to work with lega
 
 ## Problem
 
-A legal team during Discovery and Deposition phase are often faced with mountains of documents and multimedia.
+A legal team during discovery and deposition phase are often faced with mountains of documents and multimedia.
 
-Various documents, audio or video may not be in the Legal Teams language. 
+Various documents, audio or video may not be in the legal teams language. 
 
-Managing this huge amount of documentation is very inefficient and time consumng for the Legal Team. You cant work concurrently, and you are tied to the physical location where the documents exist.
+Managing this huge amount of documentation is very inefficient and time consumng for the legal team. You can't work concurrently, and you are tied to the physical location where the documents exist.
 
 Document exchange with other legal teams slows down the process and is expensive.
 
-You often need a secure video conference system for court as well as out of court.
+You often need a secure video conference system in and out of court.
 
 Relavent Terms and Definitions:
 
@@ -25,15 +25,15 @@ Relavent Terms and Definitions:
 
 ## Solutions
 
-The software allows your Team to work through the Deposition and Discovery phase between the Plaintiffs and Defendants quickly.
+The software allows your team to work through the deposition and discovery phase between the plaintiffs and defendants quickly.
 
-For your Org create a Project for each case.
+For your org, create a project for each case.
 
-Scan all the Documents and index them, so that all the Team can concurently work on the case from anywhere.
+Scan all the documents and index them, so that all the team can concurently work on the case from anywhere.
 
-Transcribe all documents into the Legals Teams language and also other actors languages.
+Transcribe all documents into the legals teams language, and also other actors languages.
 
-Collaborate with involved actors in real time and across languages and geographical barriers.
+Collaborate with involved actors in real time and across language and geographical barriers.
 
 ## More information
 
