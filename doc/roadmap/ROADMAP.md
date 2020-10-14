@@ -16,9 +16,7 @@ LOE = Level of effort
 - Research Package (DONE)
 	- "Check consideration" branch works for web and branched survey. back works. cancel works.
 - modular: sys config ( LOE: 2 - 3 days, maybe 2 )
-	- all modules using github.com/gen0cide/cfx
-	- will be packed into embedder and then unpacked higher up and merge into one base.yaml
-		- so seeder needs to merge configs.
+	- see: minin-jsonnet.md
 - modular: sys routes for grpc (LOE: 2 days )
 	- each module has a config loader.
 	- one aspect is to load the GRPC routes.
@@ -77,6 +75,57 @@ LOE = Level of effort
 		- NO 2FA at this stage.
 - guards (LOE: )
 	- so that GUI and Server enforces access
+	- The way we do it is by hand coding, which is time consuming and leads to mistakes. 
+		- OPA will save our arses.
+		- Theory: https://www.verygoodsecurity.com/blog/posts/building-a-fine-grained-permissions-system-in-a-distributed-environment
+		- https://github.com/sawadashota/kratos-frontend-go
+		- based on ory, kratos and OPA rego.
+		- OPA Rego policies might save our butts as we need to do authz and guards at GUI, Server and Data Layer.
+			- https://github.com/open-policy-agent/opa
+		- Server:
+			- https://github.com/open-policy-agent/opa/blob/master/cmd/run.go
+				- Cobra :)
+			- Store: https://github.com/open-policy-agent/opa/blob/master/storage/interface.go
+				- Easy to make it work wiht genji / Badger
+				- Its has DataEvent and Trigger Event. 
+		- We will almost definitly need to make this Modular. JSONNET will work well with it i think.
+			- Bundler: https://www.openpolicyagent.org/docs/v0.14.2/external-data/#option-3-bundle-api
+		- JWT, Singin SignOn, etc
+			- https://github.com/ory/keto/blob/master/engine/ladon/handler.go
+			- https://github.com/ory/keto/blob/master/engine/engine.go
+			- Store:
+				- https://github.com/ory/keto/blob/master/storage/manager_sql.go
+					- they ue the OPA store interface, and wrote their SQL store
+					- This looks like a good basis to write a Genji Driver and get migrations. See the next 2 points below:
+					- Drivers:
+						- https://github.com/ory/x/blob/master/sqlcon/connector.go#L101
+						- Tracing: https://github.com/ory/x/blob/master/sqlcon/connector.go#L235
+						- https://github.com/ory/x/blob/master/dbal/migrate_files.go
+						- https://github.com/ory/x/blob/master/sqlcon/migrate.go
+
+		- GO: https://www.openpolicyagent.org/docs/v0.14.2/integration/#integrating-with-the-go-api
+			- looks nice.
+			- Example: https://github.com/open-policy-agent/example-api-authz-go
+		- GRPC: https://github.com/open-policy-agent/opa-envoy-plugin
+			- looks like we can use it with Improbable, but need to check
+			- simple examples: 
+				- https://yashagarwal.in/posts/2019/02/go-grpc-opa-a-perfect-union-part-3/
+					- matching code: https://github.com/yashhere/go-library-service
+			- Sys-core GRPC and CLI will eventually be used to provide direct access to Genji
+				- Just like how DGraph uses GRPC as the direct access to Badger DB !
+				- SO OPA and GRPC allow use to apply the policies there.
+				- So we SHOULD be able to also use the GRPC and OPA to guard access from Modules also !! :)
+		- Dart: https://github.com/open-policy-agent/contrib/tree/master/dart_authz
+			- Sure its for a Dart Server, but from my investigation of the dart lib we can adapt it to work with FLutter and Flutter Modular guards.
+		- SQL:
+			- only found a shitty python examle so far
+	- Auth
+		- https://github.com/salrashid123/oauth2#impersonated-credentials-with-domain-wide-delegation
+			- For federatd auth
+		- https://github.com/salrashid123/yubikey
+			- for future reference when we need to start using Yubikeys and solokey.
+
+		
 	- use the JWT .
 	- GUI
 		- encorce gui NAV display

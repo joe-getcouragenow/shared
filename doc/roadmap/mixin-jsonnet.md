@@ -52,6 +52,7 @@ https://github.com/m3db/m3/blob/master/examples/dbnode/proto_client/main.go
 ## Roadmap
 
 start with this: https://github.com/yoshz/monitoring-mixins
+- modify dep.mk ?
 
 - mod-dummy
     - fix mod dummy code
