@@ -5,8 +5,8 @@ Base architecure ..
 ## Base Architecture summary
 
 - Orgs and Projects directory
-    - Allows Federated Teams that are internal and external to your Org to have access to the system.
-    - Use Projects to apply different security policies for internal and external actors / people.
+    - Allows federated teams that are internal and external to your org to have access to the system.
+    - Use projects to apply different security policies for internal and external actors/people.
 - Secure login with various forms of 2FA (2 Factor Authentication).
     - FIDO2 and WebAuthn 
     - SMS - but its really not at all secure. 
@@ -35,7 +35,7 @@ Base architecure ..
     - Power users need to be able to use the system any time and from any device.
 - Can run offline.
     - This is important for people working in countries where network access is not high quality.
-- Providence and Audit trailing (Compliance)
+- Providence and Audit trailing (compliance)
     - Providence means that the source of anything is recorded.
     - Audit Trailing is a log of what changes occurred in the system. 
     - These Compliance aspects are useful if you have any malpractice internally. They are needed to conform with ISO standards and EU and US Government standards.
@@ -43,7 +43,7 @@ Base architecure ..
     - All changes in the system can be linked back against an Issue.
     - This is a type of aduit trailing, but is designed to allow all users to collaborate around Issues and work collectivly to resolve them, whilst keeping an Audit trail at the Issue level. 
 - Secure Email and DNS
-    - The system incorporates a DNS and Email Server.
+    - The system incorporates a DNS and email server.
     - This is needed by some Orgs that are using third party email and DNS, and so leaking their and their clients privacy.
     - The DNS Server acts as a type of Applications firewall in that it prevents malware, bots and other external tracking systems to reach the main servers or any of your users. 
     - If they all use the DNS Server they get this protection. 
