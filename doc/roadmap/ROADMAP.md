@@ -13,38 +13,10 @@ LOE = Level of effort
 
 - Main v2 building.
 	- sign in working.
+
 - Research Package (DONE)
 	- "Check consideration" branch works for web and branched survey. back works. cancel works.
-- modular: sys config ( LOE: 2 - 3 days, maybe 2 )
-	- see: minin-jsonnet.md
-- modular: sys routes for grpc (LOE: 2 days )
-	- each module has a config loader.
-	- one aspect is to load the GRPC routes.
-		- so that any MAIN at any level can use them.
-	- need a Service.go per module
-	- us it from top level main.
-- modular: Service (LOE: 1 day )
-	- Needs Service.go
-		- sucks routes, etc out of the config.
-		- used by examples and main.
-	- Each module needs to do this.
-- Wire sys-account / mod-account up from Main downward ( LOE : 1 hr )
-	- using config, routes and service.
-- Wire up sys-core and shared sys-core.
-	- using config, routes and service.
-	- dao ( json to genji mapping)
-- Bootstrap system ( LOE: 1 day )
-	- sys CLI ( 1 day )
-	- create org and project and default accounts.
-		- golang driven. just add a CMD to the existing CLI for shared sys-core 
-- Sys DB (LOE: 4 days )
-	- fix account creation so it checked for upserts. ( .5 day)
-	- fix cron job so it is non blocking.
-	- finish backup (nightly)
-		- must be streaming. ( 2 days )
-		- copies them to s3 google storage. ( 1 day )
-		- restore from s3 ( .5 day )
-		- not differential backups.
+
 - mod-account hardcoded to load the same survey (LOE: ??? )
 	- bring in Research Package
 		- check works from top main down.
@@ -61,6 +33,44 @@ LOE = Level of effort
 	- dashboard 
 		- Load the Filter types via the Meta Field Proto, and hence the DB
 		- Do the SQL query via the DB at shared sys-account
+
+- modular: sys config ( LOE: 2 - 3 days, maybe 2 )
+	- see: minin-jsonnet.md
+
+- modular: sys routes for grpc (LOE: 2 days )
+	- each module has a config loader.
+	- one aspect is to load the GRPC routes.
+		- so that any MAIN at any level can use them.
+	- need a Service.go per module
+	- us it from top level main.
+
+- modular: Service (LOE: 1 day ).
+	- Needs Service.go
+		- sucks routes, etc out of the config.
+		- used by examples and main.
+	- Each module needs to do this.
+
+- Wire sys-account / mod-account up from Main downward ( LOE : 1 hr )
+	- using config, routes and service.
+
+- Wire up sys-core and shared sys-core.
+	- using config, routes and service.
+	- dao ( json to genji mapping)
+
+- Bootstrap system ( LOE: 1 day )
+	- sys CLI ( 1 day )
+	- create org and project and default accounts.
+		- golang driven. just add a CMD to the existing CLI for shared sys-core 
+
+- Sys DB (LOE: 4 days )
+	- fix account creation so it checked for upserts. ( .5 day)
+	- fix cron job so it is non blocking.
+	- finish backup (nightly)
+		- must be streaming. ( 2 days )
+		- copies them to s3 google storage. ( 1 day )
+		- restore from s3 ( .5 day )
+		- not differential backups.
+
 - sys-account
 	- when user signs out, invalidate JWT.
 	- when user times out, invalidate JWT.
@@ -73,6 +83,7 @@ LOE = Level of effort
 		- for change password 
 		- for password recovery, if they forgot
 		- NO 2FA at this stage.
+
 - guards (LOE: )
 	- so that GUI and Server enforces access
 	- The way we do it is by hand coding, which is time consuming and leads to mistakes. 
