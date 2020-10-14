@@ -89,7 +89,7 @@ The system will real time translate any functionality. For example in a video co
 
 ## Open Development system
 
-The Architecture is designed so that other developers can build modules on top of the Archietcure, without undermining the End to End encryption.  It does this by forcing all Modules to themsleves have Private and public keys and for the System to then enforce those. This is essnetally the same thing the App Store does, and requires Notorization.
+The Architecture is designed so that other developers can build modules on top of the Architecture, without undermining the End to End encryption.  It does this by forcing all Modules to themsleves have Private and public keys and for the System to then enforce those. This is essnetally the same thing the App Store does, and requires Notorization.
 
 - https://developer.apple.com/documentation/xcode/notarizing_macos_software_before_distribution
 

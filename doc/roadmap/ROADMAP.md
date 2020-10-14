@@ -13,7 +13,7 @@ LOE = Level of effort
 
 - Main v2 building.
 	- sign in working.
-- Rsearch Package (DONE)
+- Research Package (DONE)
 	- "Check consideration" branch works for web and branched survey. back works. cancel works.
 - modular: sys config ( LOE: 2 - 3 days )
 	- all modules using github.com/gen0cide/cfx
@@ -54,15 +54,14 @@ LOE = Level of effort
 	- so all orgs / projects use the same survey
 	- flutter needs to save this data to DB via the shared sys-account Protobuf.
 		- save the "Survey" JSON into the respective Meta Field
-		- save the "Condition" and "Support Roles" data into the respective Meta Fields
+		- save the "Condition" and "Support Roles" data into the respective Meta Fields and into the DB as real data and not JSON.
 			- so then when we do the SQL query for the dashboard we are only doing standard SQL and not dealing with JSON.
-		- save the Filter types data into the respective Meta Fields. Get this from the Survey JSON.
 			- so the Dashboard Filters can use this.
 	- Modify the shared sys-account Protobuf to allow the above.
 	- User can redo the survey
 		- override the above data.
 	- dashboard 
-		- Load the Filer types via the Meta Field Proto
+		- Load the Filter types via the Meta Field Proto, and hence the DB
 		- Do the SQL query via the DB at shared sys-account
 - sys-account
 	- when user signs out, invalidate JWT.
@@ -82,10 +81,11 @@ LOE = Level of effort
 	- GUI
 		- encorce gui NAV display
 		- enforce routes
-		- context, so that all calls to sys have the igh Og and Project context
+		- context, so that all calls to sys have the riht Org and Project context
+			- suck out of JWT
 	- Server
-		- load the Nav display Data, and expose over JWT claims.
-		- enforce routes at GPRC using JWT
+		- load the Nav display Data, and expose via JWT claims.
+		- enforce routes at GRPC using JWT
 		- Context loaded per request using JWT. Not using Sessions because JWT is our session cookie.
 
 - seeder ( 5 days )
@@ -109,8 +109,11 @@ LOE = Level of effort
 
 BUT...
 
-- Have not done SQL Migrations, so then if Production v2 has issues we cant fix them.
-- Needs UAT testing still. 
+- Try to get Migrations done because without it that Server deployed will be orgphaned.
+- SQL Migrations (LOE: 5 days)
+- Needs UAT testing still.
+	- Need to be done as soon as a deployed binary is deployed.
+	- Get auto updating working from github releases.
 
 
 ---
