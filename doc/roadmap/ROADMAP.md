@@ -15,7 +15,7 @@ LOE = Level of effort
 	- sign in working.
 - Research Package (DONE)
 	- "Check consideration" branch works for web and branched survey. back works. cancel works.
-- modular: sys config ( LOE: 2 - 3 days )
+- modular: sys config ( LOE: 2 - 3 days, maybe 2 )
 	- all modules using github.com/gen0cide/cfx
 	- will be packed into embedder and then unpacked higher up and merge into one base.yaml
 		- so seeder needs to merge configs.
