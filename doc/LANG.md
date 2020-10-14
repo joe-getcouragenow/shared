@@ -1,17 +1,17 @@
 
 ## Language
 
-This is a high level summary of the languages system.
+This is a high level summary of the language system.
 
 
 
-## Problem Statement:
+## Problem Statement
 
 The orgs and users deal with the problem of languages and multimedia not being in their native language.
 
 Typically third parties or software are needed to get around this problem. You can't work concurrently, and you are tied to the physical location.
 
-## Solutions:
+## Solutions
 
 
 All Documents are indexed, so that all the team can concurently work from anywhere.
