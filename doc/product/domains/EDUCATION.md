@@ -44,11 +44,13 @@ Pine64 Devices:
 
 Pine64 Servers:
 
-- [Cluster](https://www.pine64.org/clusterboard/)
-    - [![IMAGE](https://www.pine64.org/wp-content/uploads/2019/04/Cluster-Board-600x600-2.jpg)
-    - AA [https://www.pine64.org/wp-content/uploads/2019/04/Cluster-Board-600x600-2.jpg|alt=octocat]
+- [Cluster board](https://www.pine64.org/clusterboard/)
+    - Image: ![header image](https://raw.github.com/getcouragenow/shared/master/doc/product/domains/pine64-cluster-board-large.jpg)
     - Price: 99 USD
-- [Single](https://www.pine64.org/rockpro64/)
+- [Single board](https://www.pine64.org/rockpro64/)
+    - Image: ![header image](https://raw.github.com/getcouragenow/shared/master/doc/product/domains/pine64-single-board-large.jpg)
+    - Price: 99 USD
+
     - https://www.pine64.org/wp-content/uploads/2019/04/RPro64_high_res.jpg
 
 
