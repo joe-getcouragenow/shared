@@ -117,7 +117,6 @@ flu-mob-build:
 flu-desk-init:
 	cd $(FLU_SAMPLE_FSPATH) && $(TOOL_HOVER_BIN_NAME) init
 	
-
 ## Runs Flutter Desktop
 flu-desk-run:
 	cd $(FLU_SAMPLE_FSPATH) && $(TOOL_HOVER_BIN_NAME) run
@@ -126,7 +125,8 @@ flu-desk-run:
 flu-desk-build:
 	# This is for the CI environment where there is no openGL
 	cd $(FLU_SAMPLE_FSPATH) && flutter build bundle
-	cd $(FLU_SAMPLE_FSPATH) && $(TOOL_HOVER_BIN_NAME) build $(GO_OS) --opengl=none
+	cd $(FLU_SAMPLE_FSPATH) && $(TOOL_HOVER_BIN_NAME) build $(GO_OS)
+	#cd $(FLU_SAMPLE_FSPATH) && $(TOOL_HOVER_BIN_NAME) build $(GO_OS) --opengl=none
 	
 
 
