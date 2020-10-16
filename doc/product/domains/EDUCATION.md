@@ -14,23 +14,23 @@ Privacy and data ownership is highly important in this sector because of the pot
 
 ## Solutions
 
-High light points:
+Highlight points:
 
-- Privacy: Protects kids from online stalkers. They are only connecting to thier own Rasp PI. So their are firewalled essentially.
+- Privacy: Protects minors from online stalkers. They are only connecting to thier own Rasp PI. So their are firewalled essentially.
 
 - Multi languages
 
-- Offline Does not need internet connection, which can be an issue in Countries with poor internet connectivity. The Rasp Pi in the school holds all tthe data, and the childrens own device ( Laptop, Tablet, etc) is always kept up to date, and so when they leave school all their homework and other data they need is on their device. They can do their homework and access everything they need without a home internet conection.
+- Offline does not need internet connection, which can be an issue in countries with poor internet connectivity. The Rasp Pi in the school holds all the data and the childrens own device (laptop, tablet, etc) is always kept up to date, so when they leave school all their homework and other data they need is on their device. They can do their homework and access everything they need without a home internet conection.
 
 - Conferencing and Chat 
 
 ## Case Study
 
-In Kenya is really useful because the Rasp Pi is in the school and the kids tablets / laptops automatically sync and so when the kids go home they can work 100% off their laptop offline and see everything and do their homework.
+In Kenya this is really useful because the Rasp Pi is in the school and the kids tablets / laptops automatically sync, so when the kids go home they can work 100% off their laptop offline and see everything and do their homework.
 
-This mean the kids never connect to a network where bad actors can reach them. The schools cross sync the data between each other and so form their own private, secure and redundant cloud. So if their Rasp Pi fails or whatever, they can boot another one and sync it from a nearby school.
+This means the kids never connect to a network where bad actors can reach them. The schools cross sync the data between each other and so form their own private, secure, and redundant cloud. So if their Rasp Pi fails, they can boot another one and sync it from a nearby school.
 
-We are currently working to get our system to work on Pine64 devices which are secure, high quality and inexpensive devices.
+We are currently working to get our system to work on Pine64 devices which are secure, high quality, and inexpensive devices that can also be used in schools.
 
 Pine64 Devices:
 
