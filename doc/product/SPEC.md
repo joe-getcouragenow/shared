@@ -28,7 +28,7 @@ Base architecure ..
         - When run internally, you can shut of external netwok access if needed.
     - All Real time communication employs the same security standards as the gold standard, which is Signal as used by Governments, etc.
         - This is called MPL or double ratchet in the industry. 
-        - But with No IP Leakage. Despite all the above security measure, Signal, Whats App, Google Meet all leaked your IP address. This is because they use WebRTC as the communication means. WebRTC works by both parties within a real time communication session sharing with each other their IP address, in order to do a Peer to Peer session. We do not allow this. We force all real time communciation (data, video, audio) to be relayed via our Server, and thus each users cannot discover any other users IP address. 
+        - But with No IP Leakage. Despite all the above security measures, Signal, Whats App, Google Meet all leak your IP address. This is because they use WebRTC as the communication means. WebRTC works by both parties within a real time communication session sharing with each other their IP address, in order to do a Peer to Peer session. We do not allow this. We force all real time communciation (data, video, audio) to be relayed via our Server, and thus each user cannot discover any other users IP address. 
         - Also: Finding the IP address of another user when using Signal and other similar WebRTC software is just a matter on installing a proxy sniffer on your machine. Its not at all hard, is common software and someone can be shown this in 30 seconds.
         - Also: The WebRTC protocol forces connections to be opened on your router. Once these are opened, malicous actors can exploit it.
 - Run on Web, Desktop and Mobiles.

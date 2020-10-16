@@ -39,6 +39,8 @@ Collaborate with involved actors in real time and across language and geographic
 
 To find what tools relate to this domain:
 
+See [USER_SETUP.md](https://github.com/getcouragenow/shared/blob/master/doc/LANG.md) for more information regarding the language tools and features the system provides.
+
 See [SPEC.md](https://github.com/getcouragenow/shared/blob/master/doc/SPEC.md) for more information regarding the core system and security features.
 
 See [LANG.md](https://github.com/getcouragenow/shared/blob/master/doc/LANG.md) for more information regarding the language tools and features the system provides.

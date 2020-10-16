@@ -35,10 +35,18 @@ We are currently working to get our system to work on Pine64 devices which are s
 Pine64 Devices:
 
 - [Laptop](https://www.pine64.org/pinebook-pro/)
-    - https://www.pine64.org/wp-content/uploads/2020/02/pbp1.png
+    - Image: ![header image](https://raw.github.com/getcouragenow/shared/master/doc/product/domains/pine64-laptop-large.png) 
+    - Price: 100 USD
+
 - [Tablet](https://www.pine64.org/pinetab/)
+    - Image: ![header image](https://raw.github.com/getcouragenow/shared/master/doc/product/domains/pine64-cluster-board-large.jpg) 
+    - Price: 100 USD
     - https://www.pine64.org/wp-content/uploads/2020/05/pinetab_KB_P64_UT_2.png
+
 - [Watch](https://www.pine64.org/pinetime/)
+    - Image: ![header image](https://raw.github.com/getcouragenow/shared/master/doc/product/domains/pine64-cluster-board-large.jpg) 
+    - Price: 100 USD
+
     - https://www.pine64.org/wp-content/uploads/2019/10/PineTime_leaflet.jpg
 
 
@@ -46,12 +54,13 @@ Pine64 Servers:
 
 - [Cluster board](https://www.pine64.org/clusterboard/)
     - Image: ![header image](https://raw.github.com/getcouragenow/shared/master/doc/product/domains/pine64-cluster-board-large.jpg)
-    - Price: 99 USD
+    - PINE64 Cluster nodes with a 1TB NVMe SSD mounted in the PCIe slot
+        - Image: ![header image](https://raw.github.com/getcouragenow/shared/master/doc/product/domains/pine64-cluster-board-withssd-large.jpg)
+    - Price: 100 USD
+
 - [Single board](https://www.pine64.org/rockpro64/)
     - Image: ![header image](https://raw.github.com/getcouragenow/shared/master/doc/product/domains/pine64-single-board-large.jpg)
-    - Price: 99 USD
-
-    - https://www.pine64.org/wp-content/uploads/2019/04/RPro64_high_res.jpg
+    - Price: 60 USD
 
 
 ## More information
