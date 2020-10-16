@@ -17,11 +17,96 @@ LOE = Level of effort
 - Research Package (DONE)
 	- "Check consideration" branch works for web and branched survey. back works. cancel works.
 
-- mod-account hardcoded to load the same survey (LOE: ??? )
+- boostrap
+	- single org and single project
+
+- DB
+	- Test pooling. Is it really an issue.
+		- solution: fork and add mutux ?
+		- WATCH this an Issue: https://github.com/genjidb/genji/issues/266 to 
+	- Need to implement streaming back and restore
+	- Decisions. Drop Genji for now. Use a stable concurrent access badger DB
+
+- New DB
+	- 
+
+- DB for mod-survey
+	- mod-survey needs its own DB. Mod-account then does not need to exist then !!
+		- Mod-survey can save all the relevant data to its own DB namespace.
+		- It can save User meta fields that it needs to its DB
+		- When a User is deleted, Sys can broadcast it to the mods and they can cascade delete their data relating to a user also.
+		- This is a better design in the long term because modules are less restricted.
+	- So want to expose DB over GRPC.
+		- sys-account/dao init is a good example of whats needed !
+			- We COULD pollute the mod level with GENJI code for now to get the job done.
+			- As long as the DB lives down in SYS. Basically like how sys-account does it.
+			- Later we could turn the genji calls into GRPC calls.
+			- why ? we need to block them accessing tables they are not allowed to access.
+				- If we just let them have their OWN physical DB's 
+					- backup restore must be co-ordinated.
+						- Embedded NATS is perfect for this
+						- Can also broadcast User, Org, Project changes from sys-accounts to all mods.
+						- Migrations are still internal to each module
+							- can broadcast version changes IF we want.
+							- But ok since its GRPC between sys and mod levels.
+					- solves the data access issues because they ONLY physically have access to their DB data
+		- Move sys DB up to sys-shared DB. SO everyone uses the same DB code, and its all in one place.
+			- genji/document
+				- is used in DAO of mods. So need to expose in sys-shared
+			- genji/sql/query
+				- also used in DAO or mods. So again expose in sys-shared
+			- QueryParams
+				- used so move to sys-shared for all.
+			- syscore/db
+				- has an interface at least. TableName() string, CreateSQL() []string
+				- Looks like we just need to expose that over GRPC actually.
+				- The other stuff is only for sys modules !
+		- SysCore neds to tell Mods when to do certain things
+			- User/ Proejct/ Org deletes
+			- Backup and restores
+			- SO use GRPC.....
+			- Always initiated by Sys.
+				- so sys has the cron job.
+			- When a user account
+				- created
+				- verified (Payload: JSON, UserID)
+				- deleted
+			- SO just extend sys-share.
+
+- sys-account
+	- flow
+		- user fills in mod-survey.
+		- auth check to see if they have account.
+			- no
+				- save the survey data in Preferences. 
+				- Save the mod-suvey method callback 
+				- signup and email and click it and SHow "Verified - you have account now"
+				- then move on to Yes, and pass the survey data from Preferences
+			- yes
+				- tell the modules via GRPC "event: Account verifed", Payload: "the Preferences data, UserID"
+	
+- mod-survey DB:
+	- Project Table
+		- SurveyID
+		- SysProject-RefID ( mapping to sys project)
+		- SchemaType (JSON)
+		- FilterTypes (2 for dashboard filter) - Condition and Support Roles
+	- User Table
+		- UserID
+		- ModSurvey-RefID
+		- SysUser-RefID ( mapping to sys user)
+		- FilterValues ( their answers for Condition and Support Roles )
+		- SchemaValue ( JSON )
+
+- mod-survey logic
+
+	- The Research module should NOT be part of mod-account Mod-account is only for Signup stuff. Mod-survey is where we should do the research package. 
+	- First just get the Static GUI loaded with no DB, etc
+	
 	- bring in Research Package
 		- check works from top main down.
 		- hack it to have the Condition and Support Roles
-	- so all orgs / projects use the same survey
+	
 	- flutter needs to save this data to DB via the shared sys-account Protobuf.
 		- save the "Survey" JSON into the respective Meta Field
 		- save the "Condition" and "Support Roles" data into the respective Meta Fields and into the DB as real data and not JSON.
@@ -33,6 +118,8 @@ LOE = Level of effort
 	- dashboard 
 		- Load the Filter types via the Meta Field Proto, and hence the DB
 		- Do the SQL query via the DB at shared sys-account
+
+
 
 - modular: sys config ( LOE: 2 - 3 days, maybe 2 )
 	- see: minin-jsonnet.md
