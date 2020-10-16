@@ -24,7 +24,7 @@ this-print:
 	@echo -- TOOL Hover --
 
 	@echo GO_FSPATH 				${GO_FSPATH}
-	@echo TOOL_DUMMY_BIN_NAME 		${TOOL_DUMMY_BIN_NAME}
+	@echo GO_BIN_NAME 				${GO_BIN_NAME}
 	@echo GO_BUILD_OUT_FSPATH: 		${GO_BUILD_OUT_FSPATH}
 	@echo GO_BUILD_OUT_ALL_FSPATH: 	${GO_BUILD_OUT_ALL_FSPATH}
 
