@@ -28,7 +28,62 @@ LOE = Level of effort
 	- Decisions. Drop Genji for now. Use a stable concurrent access badger DB
 
 - New DB
-	- 
+	- Lets use ipfs badger.
+	- Why ?
+		- is stable
+		- has CRDT in it, which we will need for sync later :)
+			- SO mods using the DB and running as many instacnes can sync ( brings us to v5) 
+			- SO when we embed the golang inside flutetr modbile and desktop, we can sync from the Server to the many Clients
+				- We also gain offline editting in the client archietecture that we can use with mod-docs and others.
+	- Can we wrap it over GRPC and Proto?
+		- GRPC is for client server
+		- Proto is for Flutter to go embedded using FFI. It does work btw !
+		- Our sys modules already seperate GRPC and Proto, so we are good.
+	- Will need to support Data and files
+		- IPFS supports it.
+	- Module code aspects
+		- The libs below show the potential
+		- Need to make it easy for a Module to writ etheir DAO
+		- A Module still uses our Modular Architecture
+			- We just extend our GRPC sys code
+			- We just provide the IPFS stuf to Modules via it.
+	- https://github.com/ipfs/go-ds-crdt
+	- https://github.com/berty/go-orbit-db/blob/master/iface/interface.go
+		- Proto: https://github.com/search?q=org%3Aberty+proto&type=code
+			- many.
+		- CRDT: 
+			- Docs: https://github.com/berty/berty/blob/master/docs/protocol/README.md#conflict-free-replicated-data-type
+			- Interface: https://github.com/berty/go-orbit-db/blob/master/stores/operation/interface.go#L7
+			- Logic: https://github.com/berty/go-orbit-db/blob/master/iface/interface.go#L231
+			- Logging: https://github.com/berty/go-ipfs-log/blob/master/log.go#L1
+		- Key Stores:
+			- We will need this very soon anyway
+			- We will extedn to work wth yubikeys.
+			- https://github.com/ipfs/go-ipfs-keystore
+				- Device level for Auth: https://github.com/berty/berty/blob/master/go/pkg/bertyprotocol/keystore_device_test.go
+				- Message Level for Data: https://github.com/berty/berty/blob/master/go/pkg/bertyprotocol/keystore_message_utils_test.go
+	- https://github.com/amirylm/libp2p-facade
+		- abstracts IPFS very nicely.
+		- incorporates CRDT also.
+		- code is much cleaner due to the abstraction, and means that Modules are clean.
+		- code is written like a Service interface, and so easy for us to use GRPC and Proto to wrap, which we will wan to.
+		- https://github.com/amir-yahalom/go-csn. 
+			- uses github.com/amirylm/libp2p-facade
+				- https://github.com/amir-yahalom/go-csn/blob/master/go.mod#L6
+				- So its interface based and so provide the abstraction to make this use GRPC and Protos !!!!
+				- Each Module will still import IPFS code. But we can at least put all this in Sys-Shared
+				- Essentially sys-shared has:
+					- https://github.com/amir-yahalom/go-csn/tree/master/commons
+					- https://github.com/amir-yahalom/go-csn/tree/master/content
+				- Mains have CMD of:
+					- boot node is the Discovery server. It prob tracks the http gateways and nodes.
+					- http-gateway is the way in to the nodes and so protects the privacy of the nodes.
+					- node is a users node. Like a desktop, mobile or rasp pi.
+				- Module has:
+					- code to talk to commons and content via GRPC / Protos that are supplied via Sys-Shared.
+			- No Key Store yet.
+			- File Store: https://github.com/amirylm/libp2p-facade/blob/master/storage/fs.go
+			- Data Store: https://github.com/amirylm/libp2p-facade/blob/master/storage/crdt.go
 
 - DB for mod-survey
 	- mod-survey needs its own DB. Mod-account then does not need to exist then !!
