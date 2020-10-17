@@ -33,13 +33,24 @@ this-print:
 ## Build
 this-build: this-build-clean
 	$(MAKE) go-build
-	which ${TOOL_DUMMY_BIN_NAME}
+	which ${TOOL_HOVER_BIN_NAME}
 
 this-build-clean:
-	rm -rf ${TOOL_DUMMY_BIN_NAME}
+	rm -rf ${GO_BUILD_OUT_FSPATH}
 
 this-test:
 	@echo TODO !
 
 
 
+## Fork
+LIB=github.com/go-flutter-desktop/hover
+LIB_FSPATH=$(GOPATH)/src/$(LIB)
+LIB_BRANCH=darwin-bundle/icns-improvement
+fork-dep:
+	git clone https://github.com/go-flutter-desktop/hover $(LIB_FSPATH)
+	cd $(LIB_FSPATH) && git checkout $(LIB_BRANCH)
+fork-dep-clean:
+	rm -rf $(LIB_FSPATH)
+fork-build:
+	cd $(LIB_FSPATH) && go build -o $(GOPATH)/bin/hover .

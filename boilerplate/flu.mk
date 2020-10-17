@@ -127,7 +127,10 @@ flu-desk-build:
 	cd $(FLU_SAMPLE_FSPATH) && flutter build bundle
 	cd $(FLU_SAMPLE_FSPATH) && $(TOOL_HOVER_BIN_NAME) build $(GO_OS)
 	#cd $(FLU_SAMPLE_FSPATH) && $(TOOL_HOVER_BIN_NAME) build $(GO_OS) --opengl=none
-	
+
+## Opens the Build of Flutter Desktop
+flu-desk-open:
+	open $(FLU_SAMPLE_FSPATH)/go/build/outputs/
 
 
 ### GEN 
