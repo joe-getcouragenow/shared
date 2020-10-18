@@ -54,9 +54,12 @@ this-flu-desk-run:
 this-flu-desk-build:
 	$(MAKE) flu-desk-build
 this-flu-desk-open:
-	$(MAKE) flu-desk-open 
+	$(MAKE) flu-desk-open
 
-desk-pack:
-	#cd $(FLU_SAMPLE_FSPATH) && hover init-packaging darwin-pkg
-	cd $(FLU_SAMPLE_FSPATH) && hover build darwin-bundle
-	cd $(FLU_SAMPLE_FSPATH) && hover build darwin-pkg
+this-flu-desk-doctor:
+	cd $(FLU_SAMPLE_FSPATH) && bs-hover doctor
+
+this-flu-desk-pack:
+	#cd $(FLU_SAMPLE_FSPATH) && bs-hover init-packaging darwin-pkg
+	cd $(FLU_SAMPLE_FSPATH) && bs-hover build darwin-bundle
+	cd $(FLU_SAMPLE_FSPATH) && bs-hover build darwin-pkg
