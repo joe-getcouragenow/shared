@@ -103,6 +103,27 @@ gitr-fork-setup:
 	git remote add upstream git@$(GITR_SERVER)-$(GITR_USER):$(GITR_ORG_UPSTREAM)/$(GITR_REPO_NAME)
 	@echo
 
+GITR_SHARED_URL=https://github.com/getcouragenow/sys
+gitr-fork-submod-setup:
+	# THis is to get shared into a repo as a sumodule. SO that its easy to do CI
+	# DONT do this in SHared !! Will be crazy recursive
+	git submodule add -b master $(GITR_SHARED_URL)
+	git submodule init
+gitr-fork-submod-update:
+	git submodule update --remote
+gitr-fork-submod-delete:
+	# Steps: https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial#Removal
+	# Delete the relevant line from the .gitmodules file.
+	# Delete the relevant section from .git/config.
+	# Run git rm --cached path_to_submodule (no trailing slash).
+	# Commit the superproject.
+	# Delete the now untracked submodule files.
+
+	git submodule deinit -f — mymodule
+	rm -rf .git/modules/mymodule
+	git rm -f mymodule
+
+
 ## Sync upstream with your fork. Use this to make a PR.
 gitr-fork-catchup:
 	

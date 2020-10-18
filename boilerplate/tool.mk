@@ -3,11 +3,13 @@
 # These constants are needed because the tools are used by all the other Makefiles.
 # So all the other makes files can use these constants to call the tools.
 
+# Its:
+#- our golang bs binaries that always go into the gobin
+#- the GRPC tools that go into specific OS global paths.
+
 
 # path to binaries
 TOOL_BIN_FSPATH=$(GOPATH)/bin
-
-# ADD all tools here !!!
 
 TOOL_DUMMY_BIN_NAME=bs-dummy
 TOOL_DUMMY_BIN_FSPATH=${TOOL_BIN_FSPATH}/${TOOL_DUMMY_BIN_NAME}
@@ -83,3 +85,4 @@ tool-print:
 	@echo
 	@echo -- TOOL Print : end --
 	@echo
+
