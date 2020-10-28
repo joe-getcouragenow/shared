@@ -42,7 +42,6 @@ Editing email templates
 
 https://github.com/matcornic/hermes
 
-
 https://github.com/LoginRadius/engineering-blog-samples/tree/master/GoLang/DifferentWaysToSendEmail
 
 https://github.com/jiharal/libmail
@@ -50,5 +49,3 @@ https://github.com/jiharal/libmail
 
 https://github.com/KancioDevelopment/lib-angindai/blob/master/validator/init.go
 - same as above but with Data and a few other bits
-
-

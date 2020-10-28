@@ -37,5 +37,11 @@ Logs
 		- can can use from flutter when we embed maybe.
 
 
+Sentry is an option.
+https://docs.sentry.io/platforms/flutter/
 
+
+https://pub.dev/packages/flutter_snow_base
+- wraps catcher, whch uses sentry
+- uses flutter modular
 
