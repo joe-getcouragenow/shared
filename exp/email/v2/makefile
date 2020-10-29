@@ -22,5 +22,5 @@ git-clone-delete:
 	rm -rf $(LIB_FSPATH)
 
 
-lib-run:
-	cd $(EX_FSPATH) && go run -a *.go
+cmd-run:
+	cd cmd && go run -a *.go
