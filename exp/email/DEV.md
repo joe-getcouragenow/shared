@@ -42,10 +42,15 @@ Editing email templates
 
 https://github.com/matcornic/hermes
 
-https://github.com/LoginRadius/engineering-blog-samples/tree/master/GoLang/DifferentWaysToSendEmail
+https://github.com/pydio/cells/tree/master/broker/mailer
+- has lang
+- has smtp and sendgrid
+- has queue
+	- need to swap out to use our env bus.
+	- see the queue folder in exp !!
 
-https://github.com/jiharal/libmail
-- can use sendgrid or others.
 
-https://github.com/KancioDevelopment/lib-angindai/blob/master/validator/init.go
-- same as above but with Data and a few other bits
+TO use gmail we need to first get auth codes.
+
+
+

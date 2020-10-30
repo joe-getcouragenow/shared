@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "v2-ci-getcouragenow-org",
+  "private_key_id": "9b9ab4ae10f0d2bc7b4ce3a19557ccd89da3798a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCtIoI9o+DjWyZD\ngu9DnpFSx3usuQMljP9L6hHVQ5igtrlzLt+JnNwc7Fn1qUux86up+bZ5wC+5Omp1\ng1ajMaRQOzkJUmw7K/5Ek2vrM5bmfJJXDYGRGpRdBg1IiODwIpvoaKRQMsCe4DYq\nXNxqobhgwBzHoToIcyGQhOHlUCTfG6cJakfq18J37V/8c2TkEPkAbNGVY/dQMU8r\nKNLhe7Tiser/SAmrOUif0V4+SigB2BefZVzQZUkU4cIa6t4MtlQ7EkbP57zS8d5b\nbHniLbsyKRS+3myISUPUKNmE/HNGUkEGGLmVVvxtPx7v7obp+XQRiiNU8u45mVxI\n+WWXxqffAgMBAAECggEABpDTH5iiDqfblkkria+ZvenoEW9yucR/FKyWazVaXxM5\nioSx4CYdXXtube0y/FdL9fDiWqZPKQHDcnFool0KPitWHmRhy7H/Z9paCAa3fPDR\nxpCx49l+MYjpOAxOJiJ/McZwyhnNSY53Kg7GIm+/mOuwK7c8MYCBkAQkt5gyeG4k\nA9t/FGW073jhBPdavCA28OqAWYArR/9fz+tcbb3k8mi5v5Uvv7pjZ7H/0lLSieOJ\nD6Amo0BLdKKNGsiX+leKVDvzvSnrgbZYiKw8Vies6Saj/GaUuuLb3Rpuvh/pLGsT\nrgQZlvOkQTYEclCiQsEXrh67YHBiFzk5GtH6YEv6AQKBgQDjM3Z8IQBdpelAYsiA\noOs097WBrBN/OvtNJDEIKnQGRfeSBG4jdqSqVI1fzoMGhQnF/JYj6rBC5nZY2nVS\nAaEgFT2SIvf8lZzeVWKHag5KbI9i2RkKHbEr+t5TyFjGYSNT2f8iHlp3MGMkTJxB\nFfo+FxP+tkFzHDZ/w8VSQgdRRwKBgQDDFKEXD6p76MPMUfAkLbGJIu/D9nIJXtNr\nBupvIjCbWn7dEXwHNbvZaOxr3NPQhYTzXtbRRJS+znzPtOKVoRtQmaW9E1uhYEzN\nlXqZOi6Bt4AripaSm83IvtKkKzLa3rPcTeh3A1uA5HQeCYcWyKoVpb/glcp9oJ2b\n1ESSAH4AqQKBgH8Wg1lt0FmR+8ZzOzqQSOEpCpONYJ6TrIx7CR5LOPllW9WGuuEF\ndZh9kVMdHjegZVYlMwrGNXBGn76V/HgxxyI+H2HGQ7c7LTNEycd7cKD61r3xOEtr\nTnaObpyo/deB8JPv5gH8vpfbLinY3LKfi4n9uMaKxlOQXX/cT1zy6ErzAoGBAIxU\nwqz8L/+CqZbJOp5L4HJuF1w4ZEApXpyXFP1s8tpOdwRAF6B4HvF+cNQGvrg51DHd\n/1n6o6W+lDo2POi2RBfu7zLcQgYMaDNbXB3tpJbbke/AeiBsw9OssYo3KRYZLflE\ncf1rBN/rdzxETlEteGyqFyVPm6JTcA0w3ULJ59pBAoGAL/0aSKVbaCn7RCHTGc/y\n4iVZDpnMW/27GOLaYK8bQDliKGEqh0EE8TsAz7tHr4DjSmJ7NBvceUL+NftjtXql\nTqZerZqShH82aqUHURPKtqMJvv14La9QrRTAnAFtBBNJ/W6ifmB4520fOItjjRgi\natGBZUlPv66LvzX8gH2KDMs=\n-----END PRIVATE KEY-----\n",
+  "client_email": "emailer@v2-ci-getcouragenow-org.iam.gserviceaccount.com",
+  "client_id": "104632301480283109290",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/emailer%40v2-ci-getcouragenow-org.iam.gserviceaccount.com"
+}

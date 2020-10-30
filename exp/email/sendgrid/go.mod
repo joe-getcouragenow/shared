@@ -1,4 +1,4 @@
-module github.com/joe-getcouragenow/shared
+module github.com/getcouragenow/shared/exp/email/sendgrid
 
 go 1.15
 
