@@ -7,14 +7,14 @@ include ./release.mk
 BIN_FLAGS := -ldflags "-X main.version=$(VERSION)"
 BIN_FSPATH=./bin
 
+# CLI
 CMD_CLI_FSPATH=$(PWD)/cmd/cli/main.go
 BIN_CLI_NAME=fileio-cli#-$(VERSION)
 BIN_CLI_FSAPTH=$(BIN_FSPATH)/$(BIN_CLI_NAME)
 
 
-CMD_S3X_FSPATH=$(PWD)/cmd/s3x/main.go
-BIN_S3X_NAME=fileio-server#-$(VERSION)
-BIN_S3X_FSAPTH=$(BIN_FSPATH)/$(BIN_S3X_NAME)
+
+
 
 print:
 
@@ -37,8 +37,7 @@ print:
 build:
 	# cli
 	go build $(BIN_FLAGS) -o $(BIN_CLI_FSAPTH) $(CMD_CLI_FSPATH) 
-	# s3x server
-	go build $(BIN_FLAGS) -o $(BIN_S3X_FSAPTH) $(CMD_S3X_FSPATH) 
+
 
 cli-run:
 	$(BIN_CLI_FSAPTH) -h
