@@ -49,8 +49,4 @@ https://github.com/pydio/cells/tree/master/broker/mailer
 	- need to swap out to use our env bus.
 	- see the queue folder in exp !!
 
-
 TO use gmail we need to first get auth codes.
-
-
-

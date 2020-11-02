@@ -27,7 +27,10 @@
 ### go and flutter clients use base64
 
 - cli
+	- uplaod and download
 - flutter
+	- download
+	- upload is not high priority right now.
 
 ### cache
 
@@ -75,3 +78,8 @@
 
 https://github.com/PauloniaAQP/paulonia_cache_image/blob/master/lib/paulonia_cache_image_web.dart
 
+
+https://github.com/marcojakob/dart-event-bus
+- generic event bus, so that modules can communicate to each other.
+- no persistence but easy to add hive.
+- we probably want to add this to the grpc event bus lib.
