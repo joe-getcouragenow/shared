@@ -1,5 +1,7 @@
 # v2
 
+https://www.woolha.com/tutorials/flutter-using-memoryimage-examples
+- how to handle image in flutter 
 
 ## UPDATES
 
@@ -13,14 +15,15 @@ Below are the notes of how the whole system can be designed to make it reusable 
 	- so any module developer gets the file system for free as part of their work
 	- the developer adds the field to ehri protobuf for all base64 files they use, just like they do for data
 	- because the data repository pattern is where we do the authz, the files are not protected by the dame authz also :)
-- sys-shared level
+- sys-core level for dao
 	- go
 		- helper code for DAO. Makes it easy to use file and data. Just extend what you currently have for genji.
+		- no cache. badger itself does the caching for free for us.
 	- flu
 		- helper code for gettin the base64 out of the protobuf
-		- cache or none cache. For now as we dont have time dont bother with caching
+		- cache or no cache. For now as we dont have time dont bother with caching.
 		- display the base64 file as a standard image that can be used by the standard flutter widgets.
-- sys-core level
+- sys-core level for bootstrapping ( cli, etc)
 	- go and go cli
 		- bootstrapping the system with data and files.
 		- bootstrapping can be appled to any module. Just like we have sys-account and mod-disco currently. Each woudl have their own bootstrap json and files.
