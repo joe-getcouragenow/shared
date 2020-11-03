@@ -29,13 +29,13 @@ Below are the notes of how the whole system can be designed to make it reusable 
 		- bootstrapping can be appled to any module. Just like we have sys-account and mod-disco currently. Each woudl have their own bootstrap json and files.
 		- its fine that the user has to bootstrap each module one at a time for now btw. 
 			- We can build higher level CLI to treat the seperate modules as one for the bootstrapping in the main repo.. Just like we do it for grpc..
-			- The main thing is that you will then we able to bootstra ANY module, and so example code for a mini module can be bootstrapped too.
+			- The main thing is that you will then we able to bootstrap ANY module, and so example code for a mini module can be bootstrapped too.
 		- cli conversion
 			- a dev or biz person wants to describe their bootstrap as JSON and files.
 				- so need a way for the json data to have a "pointer" back to the file, because at the end of the day they will be linked in the DB also.
 				- so as you said on telegram, its the "id" of the file. I really think, that its best to use the path ( including the dir ) as its laid out on disk as the "FileID.
 				- This makes it easy for the user to understand how one the "File ID of a file maps to the ID in the json data.
-				- It will also make it easier later at the flutter level because you will need to give a file a "path" to dispaly it. So you can use the same "File ID" as the path.
+				- When the file is passed around ( like up ti the flutter layer), we can add the FileID as meta data. It will help a developer to recognise where the file came from in terms of their bootstrap.
 			- when you put the data in the DB you can save the File ID, but also add a PK because we know we need a KSUID.
 				- and we can extedn it for hashing, caching, chunking later easily from this base.
 - later.....
