@@ -20,4 +20,5 @@ run-delete:
 	rm -rf mydb
 
 cli:
+	# DONT both with with this. Was just playing aorund..
 	badger-cli --dir mydb list

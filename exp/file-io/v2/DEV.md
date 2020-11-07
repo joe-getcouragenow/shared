@@ -1,7 +1,57 @@
 # v2
 
+
+Hive uses indexdb for flutter web
+- so its a great place to store data and also the iages as base64
+
+Load the images.
 https://www.woolha.com/tutorials/flutter-using-memoryimage-examples
 - how to handle image in flutter 
+
+Hive caching that is multi tiered
+https://github.com/ivoleitao/stash_hive
+- uses: https://github.com/ivoleitao/stash
+
+https://github.com/hivedb/hive/blob/master/hive/lib/src/adapters/date_time_adapter.dart
+- hive has type adapers
+- So we can add one for the base64 images coming from the server over grpc if we want to reduce boilerplate.
+- so then the data from the server as proto is ten saved into hive. data and images are just treated the same this way.
+
+Genji added formal support for blobs :)
+https://github.com/genjidb/genji/blob/master/document/value.go#L274
+- so you can use it as a data type now !!!
+- part of document: https://github.com/genjidb/genji/blob/master/document/value.go#L74
+
+Genji support embedded structs now, and so will make composition easier for dao.
+- https://github.com/genjidb/genji/pull/260
+- test: https://github.com/genjidb/genji/blob/master/document/document_test.go#L228
+
+
+Telemetry
+https://github.com/observIQ/stanza
+- can support in app logging
+- can support OS level logging.
+- Way better than the rest
+	- Suppots all Os's
+	- has a simple logging lib: https://github.com/observiq/nanojack
+	- EASY to embed : https://github.com/observIQ/stanza/blob/master/cmd/stanza/root.go
+- is part of open telemetry: https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/master/receiver/stanzareceiver
+	- README: https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/master/receiver/stanzareceiver/README.md
+	- clean go mod: https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/master/receiver/stanzareceiver/go.mod
+- has predefined plugins and easy to make your own: https://github.com/observIQ/stanza-plugins/tree/master/plugins
+- Can then push the logs from open tel into google cloud logs:
+	- https://medium.com/google-cloud/integrating-tracing-and-logging-with-opentelemetry-and-stackdriver-a5396fbc3e78
+	- logs demo: https://github.com/yuriatgoogle/stack-doctor/tree/master/opentelemetry-traces-logs
+	- metrics demo: https://github.com/yuriatgoogle/stack-doctor/tree/master/opentelemetry-metrics-demo
+	- gRPC: https://github.com/yuriatgoogle/stack-doctor/tree/master/opentelemetry-tracing-demo
+- Proto
+	https://github.com/open-telemetry/opentelemetry-proto
+- Flutter
+	- https://github.com/open-telemetry/community/issues/552
+		- Lets get the ball rolling.....
+	- With the Proto, there is probably a flutter code base we can use.
+	- then we can do real time logging.
+
 
 ## UPDATES
 
@@ -15,14 +65,21 @@ Below are the notes of how the whole system can be designed to make it reusable 
 	- so any module developer gets the file system for free as part of their work
 	- the developer adds the field to ehri protobuf for all base64 files they use, just like they do for data
 	- because the data repository pattern is where we do the authz, the files are not protected by the dame authz also :)
+- sys-core go server
+	- Used for flutter to interact with the system.
+	- if you want to provide upload and doanload over standard http instead of GRPC it is probably best for now.
+		- there are plenty of samples.
+		- security using jwt etc just like we do for data calls.
+	- grpc will be slower as we now.
 - sys-core level for dao
 	- go
 		- helper code for DAO. Makes it easy to use file and data. Just extend what you currently have for genji.
 		- no cache. badger itself does the caching for free for us.
 	- flu
-		- helper code for gettin the base64 out of the protobuf
+		- helper code for gettin the base64 out of the protobuf or http.
 		- cache or no cache. For now as we dont have time dont bother with caching.
 		- display the base64 file as a standard image that can be used by the standard flutter widgets.
+		- The File URL will be based on the modules Router, etc. 
 - sys-core level for bootstrapping ( cli, etc)
 	- go and go cli
 		- bootstrapping the system with data and files.
