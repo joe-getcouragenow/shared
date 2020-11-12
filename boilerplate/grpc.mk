@@ -35,7 +35,10 @@ LIB_GOGRPCCOBRA_REPO=				github.com/getcouragenow/protoc-gen-cobra
 LIB_GOGRPCCOBRA_REPO_FSPATH=		$(GOPATH)/src/$(LIB_GOGRPCCOBRA_REPO)
 #LIB_GOGRPCCOBRA_REPO_VERSION= 		v1.25.0
 
-
+## NEW ones
+# - https://github.com/mwitkow/go-proto-validators
+# - https://github.com/favadi/protoc-go-inject-tag
+# - https://github.com/chrusty/protoc-gen-jsonschema
 
 
 # Old ( last update in 14 May, 2020, so very old )
