@@ -5,8 +5,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/bregydoc/gtranslate"
+	tl "github.com/CatchZeng/google-translator/translator"
 	"github.com/emirpasic/gods/maps/linkedhashmap"
+	"golang.org/x/text/language"
 )
 
 // TranslatedMaps struct
@@ -36,13 +37,16 @@ func getTemplateWords(m *linkedhashmap.Map, delay time.Duration, tries int, from
 	for _, lang := range languages {
 		t := Translate{}
 		for _, w := range words {
-			out, err := gtranslate.TranslateWithParams(w,
-				gtranslate.TranslationParams{
-					From:  fromLang,
-					To:    lang,
-					Tries: tries,
-					Delay: delay,
-				})
+			out, err := tl.Translate(
+				w, language.MustParse(fromLang), language.MustParse(lang),
+			)
+			// out, err := gtranslate.TranslateWithParams(w,
+			// 	gtranslate.TranslationParams{
+			// 		From:  fromLang,
+			// 		To:    lang,
+			// 		Tries: tries,
+			// 		Delay: delay,
+			// 	})
 			if err != nil {
 				log.Printf("Error to translate from %s to %s\n", fromLang, lang)
 			}
