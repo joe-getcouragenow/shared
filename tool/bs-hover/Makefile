@@ -39,7 +39,8 @@ this-build-clean:
 	rm -rf ${GO_BUILD_OUT_FSPATH}
 
 this-test:
-	@echo TODO !
+	${GO_BUILD_OUT_FSPATH} version
+	# should get "Hover (devel)"
 
 
 

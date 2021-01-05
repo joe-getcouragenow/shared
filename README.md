@@ -1,50 +1,73 @@
 # Shared
 
-Tools for devs.
+Tools for devs to build.
 
-Not for anything else
 
----
 
-**NOTE !**
-NEVER EVER put a go-mod into the root !!
-Each folder in this thing can never have a go-mod in its parent.
 
----
+## SSH local setup
 
-## Boilerplate folder
 
-Used by all repos via a back link in their make files.
+- REF: Setup many accounts in ssh config:  https://medium.com/@xiaolishen/use-multiple-ssh-keys-for-different-github-accounts-on-the-same-computer-7d7103ca8693
 
-## ci-templates folder
+- Delete the shit in your global git config. Your leaking ..
+	- ``` git config --list ```
 
-"/workflows" are auto copied to all other repos.
+- same but shows where the values come from.
+	- ``` git config -l ```
 
-All the others are experiments and we will need bit of them later.
+- Make a new key
+	- ``` ssh-keygen -t rsa -b 4096 -C "userXXX_github" ```
 
-## Dep folder
 
-Sets up Local and CI with any binaries needed. Mostly GRPC.
-boilerplate/*.mk holds the path to them on your disk, so we can use them in our build scripts easily.
+- Add ssh key 
+	- ``` ssh-add ~/.ssh/userXXX_github  ```
 
-## Exp folder
+- List added ssh 
+	- ``` ssh-add -l  ```
 
-Our experiments. Once one works we copy or replicate in the real code.
 
-## Doc folder
+- Add the public key to github on your github web site
+	- https://github.com/settings/keys
 
-Final docs.
+## SSH Config file
 
-These are kept up to date, and so if you get lost code there.
+Needs this in it:
 
-## SDK folder
+```
 
-Our golang tool for Design, Dev, Build, Deploy and Ops
+# userXXX
+# https://github.com/userXXX/dev
+# e.g: git clone git@github.com-userXXX:userXXX/dev.git
+Host github.com-userXXX
+ HostName github.com
+ User git
+ UseKeychain yes
+ AddKeysToAgent yes
+ IdentityFile ~/.ssh/userXXX_github
+ 
+```
 
-Currently under development. Stick with boilerplate make files and go:generate for now.
-But will be easy to get it going because we are really just doing what the make files do.
 
-## Tool folder
+## when you fork
 
-compiled tools we use for dev
+add this to .git/config:
+````
+[user]
+	email = userXXX@gmail.com
+````
 
+then:
+
+````
+make gitr-fork-setup
+````
+
+
+
+## Install golang and then tools
+
+
+````
+make this-dep
+````
