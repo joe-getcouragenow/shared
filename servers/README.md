@@ -6,6 +6,10 @@ This makes Dev, CI, CD and OPS easier and repeatable.
 
 All these tools will be refactored to be used by Booty.
 
+TODO:
+
+- everything here needs to be converted to golang so that booty can run it. Makefile for now just to work out how to do it.
+
 
 ## Main 
 
@@ -52,7 +56,7 @@ TODO:
 		- Makes TIDB agnostic ( gocloud.dev/mysql )
 		- Makes Hashicorp Vault agnostic ( gocloud.dev/secrets )
 			- Not sure we need it.
-			- On baremetal, where to store secrets. We need to use Zoolando golang code i think so it woks on all Desktops and Servers to store secrets in the native TPM chip.
+			- On baremetal, where to store secrets ?. We need to use Zoolando golang code i think so it woks on all Desktops and Servers to store secrets in the native TPM chip.
 
 - Yurt has a really nice way of pulling binaries. Use that in Booty and otehr tools.
 
@@ -87,6 +91,60 @@ Caddy will then just reverse proxy all docker deployed using https://github.com/
 We wont need k8 for a long time, and maybe never.
 
 openyurt ( https://github.com/alibaba/openyurt ) hwoever is a good example of tooling to make it easy for devs and users to work with k8.
+
+## victora metrics
+
+Stack:
+
+Caddy
+- For basic security needs.
+
+
+Main binary (org server)
+- protocols
+	- Standard prometheus
+		- we use github.com/VictoriaMetrics/metrics
+	- standard loggin lib: zap or logrus in json format ?
+		- we use zap.
+	- Exposes an endpoint for the agent to pull from.
+		- /metrics
+		- 
+
+VicMetAgent ( vmagent runs on our server)
+- pulls from Main binary
+- polling ( 10 secs )
+- can pull from many servers....
+
+VicMet Store ( run with Grafana )
+- File system dir using custom format.
+
+VicMetBackup ( run with Grafana )
+- pulling from VicMet Store ( streaming ..)
+- pushing to S3.
+- Sec
+	- One per Org. So we give it out to them and they put in their config.
+
+S3 ( Google GSC)
+- Bucket per Org.
+
+Grafana ( Our server  )
+- polling the agent store ( 10 secs )
+- Grafana
+	- Sec
+		- One for org. So we give it out to them and they store wherever.
+		- One for Biz Team who have get "all labels view". So we give it out to them and they store wherever.
+	- Proxy Sec ( if it works and 5 days, so not doing. )
+		- https://grafana.com/docs/grafana/latest/auth/auth-proxy/
+		- SO we provide a Link that has the headers in it from our Sys-accounts...
+- Caddy
+	- https://getcouragenow.org/metrics
+		- Sec - None.
+
+
+Maybe later...
+- https://github.com/lindenlab/caddy-s3-proxy
+- https://github.com/trusch/caddy-extauth
+
 
 ## grafana
 
