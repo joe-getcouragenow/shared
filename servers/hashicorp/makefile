@@ -8,6 +8,7 @@ GO_ARCH ?= $(shell go env GOARCH)
 # TODO : Fork this ...
 LIB_YURT_NAME=yurt
 LIB_YURT=github.com/ncabatoff/$(LIB_YURT_NAME)
+LIB_YURT_FSPATH=$(GOPATH)/src/$(LIB_YURT)
 
 BIN_YURT_GET_BINARY=$(BIN_PATH)/yurt-get-binary
 BIN_YURT_SINGLE=$(BIN_PATH)/yurt-run
@@ -24,33 +25,44 @@ print:
 	@echo GO_ARCH: 				$(GO_ARCH)
 	@echo
 	@echo LIB_YURT: 			$(LIB_YURT)
+	@echo LIB_YURT_FSPATH: 		$(LIB_YURT_FSPATH)
 	@echo
-	@echo BIN_YURT_GET_BINARY: 			$(BIN_YURT_GET_BINARY)
+	@echo BIN_YURT_GET_BINARY: 	$(BIN_YURT_GET_BINARY)
 	@echo BIN_YURT_SINGLE: 		$(BIN_YURT_SINGLE)
 	@echo BIN_YURT_CLUSTER: 	$(BIN_YURT_CLUSTER)
 
 ### DEPS
 
+dep-os:
+	# .env 
+	go get github.com/joho/godotenv/cmd/godotenv
+
 dep-lib:
-	git clone https://$(LIB_YURT)
+	git clone https://$(LIB_YURT) $(LIB_YURT_FSPATH)
 
 dep-lib-delete:
-	rm -rf $(LIB_YURT_NAME)
+	rm -rf $(LIB_YURT_FSPATH)
+
+dep-open:
+	code $(LIB_YURT_FSPATH)
 
 build:
-	cd $(LIB_YURT_NAME)/cmd/get-binary && go build -o $(BIN_YURT_GET_BINARY) 
-	cd $(LIB_YURT_NAME)/cmd/yurt-run && go build -o $(BIN_YURT_SINGLE)
-	cd $(LIB_YURT_NAME)/cmd/yurt-cluster && go build -o $(BIN_YURT_CLUSTER)
+	cd $(LIB_YURT_FSPATH)/cmd/get-binary && go build -o $(BIN_YURT_GET_BINARY) 
+	cd $(LIB_YURT_FSPATH)/cmd/yurt-run && go build -o $(BIN_YURT_SINGLE)
+	cd $(LIB_YURT_FSPATH)/cmd/yurt-cluster && go build -o $(BIN_YURT_CLUSTER)
 
 
 run-yurt-get-binary:
-	# Gets binaries
+	# Gets the binaries
 	$(BIN_YURT_GET_BINARY) -arch=$(GO_ARCH) -os=$(GO_OS) -version=1.7.3 -workdir=$(DATA_PATH)
+
 run-yurt-single:
-	# runs single node
+	# Connects to your running cluster
 	cp yurt-run.yml $(BIN_PATH)
-	$(BIN_YURT_SINGLE) -config yurt-run.yml
+	$(BIN_YURT_SINGLE) -config-file=yurt-run.yml
+
 run-yurt-cluster:
+	# Runs the Cluster
 	# Defaults
 	# Vault GUI: http://127.0.0.1:23001/
 	# Consul GUI: http://127.0.0.1:23010/
