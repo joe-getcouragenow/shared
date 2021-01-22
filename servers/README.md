@@ -11,6 +11,7 @@ TODO:
 - everything here needs to be converted to golang so that booty can run it. Makefile for now just to work out how to do it.
 
 
+
 ## Main 
 
 How does this relate to main binary ?
@@ -26,6 +27,58 @@ Main needs the following stuff from the Server.
 - Telemetry.
 
 The tools below give us te things we need to will allow user to run many main binaries with the Ops and Telemetry tools needed.
+
+
+## Control Plane : Deployment And backup
+
+We want to use google storage to hold config and bootstrap
+
+2 Options
+
+Booty is copies to latop and sever to start !!!
+
+- Booty ( liek TIUP but better ...)
+	- Then put booty on server
+		- Call Get binaries
+			- main
+			- caddy
+			- minio
+			- nats
+		- Start it ALL up with a systemd.
+			- booty
+			- minio
+		- config
+			- booty.yaml has just a token plus the bit for:
+			- minio needs 5 things.
+			- nats needs 2 things.
+	- CLI Connects with the token.
+		- pass in the URL ( local or remote ).
+		- pass in the token.
+	- Stage 0: Run it all locally !!!
+		- Get your configs all working, etc.
+		- Provision to the local MINIO.
+	- Stage 1 Prov: Pushes the everythig to the server as a zip.
+		- binaries
+		- systemd
+		- config
+			- the real security logons.
+	- Stage 2: Same thing to google
+		- Booty Server gets the event and ignore or ...
+- Then en day the server falls over..
+	- SO do stage 2 in reverse.
+	- then so Stage 1 again to the server.
+- backups
+	- Main is doing daily backups...
+	- Booty is watching for them on the File system
+	- Booty then backs it up to Google OR our own Minio :)
+
+
+Mechanisms:
+- no code gen. nothing fancy.
+- cobra
+- file movements: filehelper.go copied to booty.
+- talk to google with gocloud.dev/blob/<driver>
+- talk to nats and gogole pub sub with gocloud.dev/pubsub/<driver>
 
 
 ## Booty
@@ -108,7 +161,7 @@ Main binary (org server)
 		- we use zap.
 	- Exposes an endpoint for the agent to pull from.
 		- /metrics
-		- 
+		- none.
 
 VicMetAgent ( vmagent runs on our server)
 - pulls from Main binary
