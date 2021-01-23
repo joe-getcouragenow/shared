@@ -44,7 +44,8 @@ dep-lib-delete:
 	rm -rf $(LIB_YURT_FSPATH)
 
 dep-open:
-	code $(LIB_YURT_FSPATH)
+	# ad to workspace
+	code --add $(LIB_YURT_FSPATH)
 
 build:
 	cd $(LIB_YURT_FSPATH)/cmd/get-binary && go build -o $(BIN_YURT_GET_BINARY) 

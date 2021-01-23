@@ -16,9 +16,9 @@ TODO:
 
 How does this relate to main binary ?
 
-Our main binary is designed to run as a single binary with nothing else, and so allows a user to run everything on a desktop or linux server easily. 
+Our main binary is designed to run as a single binary with nothing else, and so allows a user to run everything on a desktop or linux server easily.
 
-It really can be thought of as the Edge binary because it has a DB and GUI, and can be easily packaged and run by anyone. Its currently is designed to operate on it own.
+It really can be thought of as the Edge binary because it has a DB and GUI, and can be easily packaged and run by anyone. Its currently is designed to operate on it owns.
 But later, it can start to act as a CDN in that read data can be cached in the DB, and mutations can be saves locally and forwarded to a Server in a Event Architecture.
 
 Main needs the following stuff from the Server.
@@ -26,27 +26,53 @@ Main needs the following stuff from the Server.
 - Ops tools.
 - Telemetry.
 
-The tools below give us te things we need to will allow user to run many main binaries with the Ops and Telemetry tools needed.
+The tools below give us these things we need.
+
+## Autostart
+
+Systemd is ok, but we can also use one that works on Desktops and Servers. 
+- We need both !
+
+Desktops: https://github.com/emersion/go-autostart
+
+## Config
+
+Because of the modular architecture we have many separate configs.
+
+Alex has proposed a Config wrapper to "merge" the config all into one.
+But we also need to be able to alter the config for users ( like a cli wiazrd or other ), and to be able to migrate configs just like we migrate a DB.
+
+SO instead it woudl be better to not "Merge" the config but instead write a wrapper that can take a standard config, and manipulate it.
+When this is teamed up with Booty, it will keep things modular and give us a good onboarding architecure.
 
 
 ## Control Plane : Deployment And backup
 
-We want to use google storage to hold config and bootstrap
+We want to use google storage to hold config and bootstrap so its easy to redeploy.
 
-2 Options
+Github Server can also be used, we need a Proper storage server anyway, so we think its better to store configs in git, push them to Google Storage and then sysnc Servers with Google Storage.
+SO then your github releases can just push zip everything and push it to Google Storage.
+Mini can replace google storgae if less HA is needed later.
 
-Booty is copies to latop and sever to start !!!
+DEV :We just use Yurt but extend it.
+- Nomad runs starts it up
+- https://www.nomadproject.io/docs/drivers/exec
+- https://www.nomadproject.io/docs/drivers/raw_exec
+- Yurt can be 
 
-- Booty ( liek TIUP but better ...)
-	- Then put booty on server
+FLow:
+
+Booty is copied to laptop and sever to start the flow...
+
+- Booty
+	- Put booty on server ( ssh in a pull it via Curl.)
 		- Call Get binaries
 			- main
 			- caddy
 			- minio
 			- nats
 		- Start it ALL up with a systemd.
-			- booty
-			- minio
+			- booty can start the others and manage them.
 		- config
 			- booty.yaml has just a token plus the bit for:
 			- minio needs 5 things.
