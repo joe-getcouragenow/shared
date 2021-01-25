@@ -45,6 +45,22 @@ But we also need to be able to alter the config for users ( like a cli wiazrd or
 SO instead it woudl be better to not "Merge" the config but instead write a wrapper that can take a standard config, and manipulate it.
 When this is teamed up with Booty, it will keep things modular and give us a good onboarding architecure.
 
+## Secrets
+
+We currently store them in systemd, which is not gong to stop a hacker that gets physical access.
+
+Instead we need to store secrets in the TPM chip.
+https://en.wikipedia.org/wiki/Trusted_Platform_Module
+
+
+- Linux and windows
+	- https://github.com/salrashid123/tpm2
+	- build on google project.
+- Linux, Windows and Mac
+	- https://github.com/zalando/go-keyring
+	- wrapper: https://github.com/martinohmann/keyring
+- Cloud
+	- Use go-cloud lib.
 
 ## Control Plane : Deployment And backup
 
